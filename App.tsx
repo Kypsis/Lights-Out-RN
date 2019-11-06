@@ -12,9 +12,7 @@ const navigator = createStackNavigator(
   },
   {
     initialRouteName: "Start",
-    defaultNavigationOptions: {
-      title: "Lights Out Game"
-    }
+    headerMode: "none"
   }
 );
 

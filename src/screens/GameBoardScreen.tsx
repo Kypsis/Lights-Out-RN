@@ -8,7 +8,7 @@ interface Props {
 
 const StartGame: React.FC<Props> = ({ navigation }) => {
   return (
-    <View>
+    <View style={styles.ScreenContainer}>
       <Button
         title="Go to Score Screen"
         onPress={() => navigation.navigate("Score")}
@@ -18,6 +18,14 @@ const StartGame: React.FC<Props> = ({ navigation }) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  ScreenContainer: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "yellow"
+  }
+});
 
 export default StartGame;
