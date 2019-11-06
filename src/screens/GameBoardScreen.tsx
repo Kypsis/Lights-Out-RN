@@ -48,6 +48,29 @@ const StartGame: React.FC<Props> = ({
     solvable(newBoard) ? setBoard(newBoard) : createBoard();
   };
 
+  const flipCells = coords => {
+    let flipBoard = board;
+    let [y, x] = coords.split("-").map(Number);
+
+    // if this coord is actually on board, flip it
+    const flipCell = (y, x) => {
+      if (x >= 0 && x < columns && y >= 0 && y < rows) {
+        flipBoard[y][x] = !flipBoard[y][x];
+      }
+    };
+
+    flipCell(y, x);
+    flipCell(y, x + 1);
+    flipCell(y, x - 1);
+    flipCell(y + 1, x);
+    flipCell(y - 1, x);
+
+    let allLit = flipBoard.every(array => array.every(item => item === true));
+
+    setBoard([...flipBoard]);
+    setHasWon(allLit);
+  };
+
   return (
     <View style={styles.ScreenContainer}>
       <Button
@@ -55,7 +78,28 @@ const StartGame: React.FC<Props> = ({
         onPress={() => navigation.navigate("Score")}
       />
       <Text>Game Board Screen</Text>
-      <Cell />
+      <Text>{hasWon ? "You Won!" : "Play!"}</Text>
+      <View
+        style={{
+          height: 300,
+          width: 300,
+          backgroundColor: "white",
+          flexWrap: "wrap"
+        }}
+      >
+        {board.map((cell, index) => (
+          <View style={{ flexDirection: "row" }} key={index}>
+            {cell.map((innerCell, innerIndex) => (
+              <Cell
+                coords={`${index}-${innerIndex}`}
+                key={`${index}-${innerIndex}`}
+                isLit={board[index][innerIndex]}
+                handlePress={flipCells}
+              />
+            ))}
+          </View>
+        ))}
+      </View>
     </View>
   );
 };

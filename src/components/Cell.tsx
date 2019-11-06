@@ -1,18 +1,32 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 
-interface Props {}
+interface Props {
+  coords: any;
+  key?: any;
+  isLit: any;
+  handlePress: any;
+}
 
-const Cell: React.FC<Props> = () => {
-  return <View style={styles.Cell}></View>;
+const Cell: React.FC<Props> = ({ isLit, coords, handlePress }) => {
+  return (
+    <TouchableOpacity
+      onPress={() => {
+        handlePress(coords);
+      }}
+    >
+      <View
+        style={{ ...styles.Cell, backgroundColor: isLit ? "purple" : "gray" }}
+      ></View>
+    </TouchableOpacity>
+  );
 };
 
 const styles = StyleSheet.create({
   Cell: {
     height: 50,
     width: 50,
-    margin: 5,
-    backgroundColor: "purple"
+    margin: 5
   }
 });
 
