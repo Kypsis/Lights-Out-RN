@@ -1,4 +1,5 @@
 import { NavigationStackProp } from "react-navigation-stack";
+import { Audio } from "expo-av";
 
 export interface Props {
   navigation: NavigationStackProp;
@@ -16,7 +17,12 @@ interface FlipCells {
   ): Array<Array<Boolean>>;
 }
 
-export const flipCells: FlipCells = (coords, board, columns, rows) => {
+export const flipCells: FlipCells = (
+  coords,
+  board,
+  columns,
+  rows
+): Array<Array<Boolean>> => {
   let flipBoard: Array<Array<Boolean>> = board;
   let [y, x] = coords.split("-").map(Number);
 
@@ -46,4 +52,30 @@ export const solvable = (board: Array<Array<Boolean>>): boolean => {
     });
   });
   return qp1 % 2 === 1 || qp2 % 2 === 1 ? false : true;
+};
+
+const soundObject = new Audio.Sound();
+export const playMusic = async (play: boolean) => {
+  if (play) {
+    try {
+      {
+        if (soundObject._loaded) await soundObject.unloadAsync();
+        await soundObject.loadAsync(require("../assets/theme.mp3"), {
+          isLooping: true
+        });
+        await soundObject.playAsync();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    try {
+      if (soundObject._loaded) {
+        await soundObject.stopAsync();
+        await soundObject.unloadAsync();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };

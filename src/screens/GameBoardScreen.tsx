@@ -13,6 +13,7 @@ const StartGame: React.FC<Props> = ({
 }) => {
   const [hasWon, setHasWon] = useState(false);
   const [board, setBoard] = useState([]);
+  const [moves, setMoves] = useState(0);
 
   useEffect(() => {
     createBoard();
@@ -28,16 +29,12 @@ const StartGame: React.FC<Props> = ({
   };
 
   const handlePress = (coords): void => {
-    const flipBoard: Array<Array<Boolean>> = flipCells(
-      coords,
-      board,
-      columns,
-      rows
-    );
+    const flipBoard = flipCells(coords, board, columns, rows);
     let allLit: boolean = flipBoard.every(array =>
       array.every(item => item === true)
     );
 
+    setMoves(prevState => prevState + 1);
     setBoard([...flipBoard]);
     setHasWon(allLit);
   };
@@ -49,7 +46,8 @@ const StartGame: React.FC<Props> = ({
         onPress={() => navigation.navigate("Score")}
       />
       <Text>Game Board Screen</Text>
-      <Text>{hasWon ? "You Won!" : "Play!"}</Text>
+      <Text>Moves: {moves}</Text>
+      <Text>{hasWon ? `You won in ${moves} moves!` : "Play!"}</Text>
       <View style={styles.boardContainer}>
         {board.map((cell, index) => (
           <View style={styles.row} key={index}>
