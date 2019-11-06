@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { NavigationStackProp } from "react-navigation-stack";
 
+import Cell from "../components/Cell";
+
 interface Props {
   navigation: NavigationStackProp;
   rows: number;
@@ -53,6 +55,7 @@ const StartGame: React.FC<Props> = ({
         onPress={() => navigation.navigate("Score")}
       />
       <Text>Game Board Screen</Text>
+      <Cell />
     </View>
   );
 };
