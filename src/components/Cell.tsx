@@ -16,14 +16,14 @@ const Cell: React.FC<Props> = ({ isLit, coords, handlePress }) => {
       }}
     >
       <View
-        style={{ ...styles.Cell, backgroundColor: isLit ? "purple" : "gray" }}
+        style={{ ...styles.cell, backgroundColor: isLit ? "purple" : "gray" }}
       ></View>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  Cell: {
+  cell: {
     height: 50,
     width: 50,
     margin: 5
