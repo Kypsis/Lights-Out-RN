@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { Input, Button, Card } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
@@ -13,6 +13,8 @@ interface Props {
 }
 
 const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
+  const { playerName, setPlayerName } = screenProps;
+
   return (
     <KeyboardAvoidingView
       style={styles.screenContainer}
@@ -32,8 +34,9 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
         titleStyle={{ fontSize: 20 }}
       >
         <Input
-          placeholder="Anonymous"
           leftIconContainerStyle={{ marginRight: 10 }}
+          value={playerName}
+          onChangeText={playerName => setPlayerName(playerName)}
           leftIcon={
             <MaterialCommunityIcons name="pencil" size={24} color="gray" />
           }

@@ -23,6 +23,7 @@ const App = createAppContainer(navigator);
 
 export default () => {
   const [playMusicState, setPlayMusicState] = useState(false);
+  const [playerName, setPlayerName] = useState("Anonymous");
 
   useEffect(() => {
     playMusic(true);
@@ -31,5 +32,14 @@ export default () => {
     };
   }, []);
 
-  return <App screenProps={{ playMusicState, setPlayMusicState }} />;
+  return (
+    <App
+      screenProps={{
+        playMusicState,
+        setPlayMusicState,
+        playerName,
+        setPlayerName
+      }}
+    />
+  );
 };

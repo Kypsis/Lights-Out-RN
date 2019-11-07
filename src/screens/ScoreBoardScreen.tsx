@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, AsyncStorage } from "react-native";
 import { Card, Button } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -56,6 +56,24 @@ const players = [
 ];
 
 const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
+  const setHighScores = async () => {
+    try {
+      await AsyncStorage.setItem("highscore", JSON.stringify(players));
+      console.log("success!");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getHighScores = async () => {
+    try {
+      const request = await AsyncStorage.getItem("highscore");
+      const scores = await JSON.parse(request);
+      console.log(scores);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View style={styles.screenContainer}>
       <ExitModal navigation={navigation} />
@@ -81,6 +99,29 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
         raised
         icon={<MaterialCommunityIcons name="restart" size={20} color="green" />}
         onPress={() => navigation.navigate("Game")}
+      />
+      <Button
+        containerStyle={{ margin: 8, width: 200 }}
+        title="Store Data"
+        titleStyle={{ padding: 10 }}
+        raised
+        onPress={setHighScores}
+      />
+      <Button
+        containerStyle={{ margin: 8, width: 200 }}
+        title="Retrieve Data"
+        titleStyle={{ padding: 10 }}
+        raised
+        onPress={getHighScores}
+      />
+      <Button
+        containerStyle={{ margin: 8, width: 200 }}
+        title="Display Name"
+        titleStyle={{ padding: 10 }}
+        raised
+        onPress={() => {
+          console.log(screenProps.playerName);
+        }}
       />
     </View>
   );
