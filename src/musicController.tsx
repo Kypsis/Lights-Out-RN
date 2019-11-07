@@ -1,7 +1,7 @@
 import { Audio } from "expo-av";
 
 const soundObject = new Audio.Sound();
-let firstRun = true;
+let firstRun: boolean = true;
 export const playMusic = async (play: boolean) => {
   if (play) {
     try {

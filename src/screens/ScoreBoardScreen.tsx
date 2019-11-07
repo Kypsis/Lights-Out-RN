@@ -1,6 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { Card, Button } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import PlayMuteButton from "../components/PlayMuteButton";
 import ExitModal from "../components/ExitModal";
@@ -10,16 +12,76 @@ interface Props {
   screenProps: any;
 }
 
+const players = [
+  {
+    name: "Test1",
+    score: 1
+  },
+  {
+    name: "Test2",
+    score: 2
+  },
+  {
+    name: "Test3",
+    score: 3
+  },
+  {
+    name: "Test4",
+    score: 4
+  },
+  {
+    name: "Test5",
+    score: 5
+  },
+  {
+    name: "Test6",
+    score: 6
+  },
+  {
+    name: "Test7",
+    score: 7
+  },
+  {
+    name: "Test8",
+    score: 8
+  },
+  {
+    name: "Test9",
+    score: 9
+  },
+  {
+    name: "Test10",
+    score: 10
+  }
+];
+
 const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
   return (
     <View style={styles.screenContainer}>
       <ExitModal navigation={navigation} />
       <PlayMuteButton {...screenProps} />
+      <Card
+        containerStyle={styles.cardContainer}
+        title="High Scores"
+        titleStyle={{ fontSize: 25 }}
+      >
+        {players.map((player, index) => {
+          return (
+            <View style={styles.scoreContainer} key={index}>
+              <Text style={styles.textStyle}>{player.name}</Text>
+              <Text style={styles.textStyle}>{player.score}</Text>
+            </View>
+          );
+        })}
+      </Card>
       <Button
-        title="Go to Start Game Screen"
-        onPress={() => navigation.navigate("Start")}
+        containerStyle={{ margin: 8, width: 200 }}
+        title="Replay"
+        titleStyle={{ padding: 10 }}
+        raised
+        icon={<MaterialCommunityIcons name="restart" size={20} color="green" />}
+        onPress={() => navigation.navigate("Game")}
       />
-      <Text>Score Board Screen</Text>
     </View>
   );
 };
@@ -31,6 +93,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "red"
+  },
+  scoreContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+    paddingVertical: 3
+  },
+  cardContainer: {
+    alignSelf: "stretch",
+    borderRadius: 10,
+    backgroundColor: "rgb(245, 245, 245)"
+  },
+  textStyle: {
+    fontSize: 20,
+    fontWeight: "400"
   }
 });
 

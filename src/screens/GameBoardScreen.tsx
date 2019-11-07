@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   boardContainer: {
     height: 300,
     width: 300,
-    backgroundColor: "white",
+    backgroundColor: "rgb(245, 245, 245)",
     flexWrap: "wrap"
   },
   row: { flexDirection: "row" }

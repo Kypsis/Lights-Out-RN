@@ -5,7 +5,7 @@ import { Octicons } from "@expo/vector-icons";
 
 interface Props {
   playMusicState: boolean;
-  setPlayMusicState: any;
+  setPlayMusicState(playMusicState: boolean): any;
 }
 
 const PlayMuteButton: React.FC<Props> = ({

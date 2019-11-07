@@ -32,7 +32,11 @@ const ExitButton: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    <Overlay isVisible={show} height={150}>
+    <Overlay
+      isVisible={show}
+      height={150}
+      overlayStyle={{ backgroundColor: "rgb(245, 245, 245)" }}
+    >
       <View style={styles.container}>
         <Text style={styles.text}>Exit game?</Text>
         <View style={{ flexDirection: "row" }}>
@@ -65,7 +69,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "rgb(245, 245, 245)"
   },
   text: {
     fontSize: 36,

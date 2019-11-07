@@ -35,7 +35,11 @@ const GameWonModal: React.FC<Props> = ({
   };
 
   return (
-    <Overlay isVisible={show} height={280}>
+    <Overlay
+      isVisible={show}
+      height={280}
+      overlayStyle={{ backgroundColor: "rgb(245, 245, 245)" }}
+    >
       <View style={styles.container}>
         <Text style={styles.heading}>You Win!</Text>
         <Text style={styles.text}>You won in {moves} moves.</Text>
@@ -75,7 +79,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "rgb(245, 245, 245)"
   },
   heading: {
     fontSize: 36,

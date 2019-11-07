@@ -5,7 +5,7 @@ interface Props {
   coords: string;
   key?: string;
   isLit: boolean;
-  handlePress: any;
+  handlePress(coords: string): void;
 }
 
 const Cell: React.FC<Props> = ({ isLit, coords, handlePress }) => {
