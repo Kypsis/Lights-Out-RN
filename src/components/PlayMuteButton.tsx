@@ -32,10 +32,9 @@ const PlayMuteButton: React.FC<Props> = ({
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, alignSelf: "flex-end" },
+  container: { position: "absolute", right: 10, top: 30 },
   button: {
-    marginTop: 50,
-    marginHorizontal: 20
+    margin: 10
   }
 });
 

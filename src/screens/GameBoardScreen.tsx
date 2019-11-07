@@ -4,6 +4,7 @@ import { NavigationStackProp } from "react-navigation-stack";
 
 import Cell from "../components/Cell";
 import PlayMuteButton from "../components/PlayMuteButton";
+import ExitButton from "../components/ExitButton";
 
 import { solvable, flipCells } from "../gameLogic";
 
@@ -52,29 +53,28 @@ const StartGame: React.FC<Props> = ({
 
   return (
     <View style={styles.screenContainer}>
+      <ExitButton navigation={navigation} />
       <PlayMuteButton {...screenProps} />
-      <View style={{ flex: 3 }}>
-        <Button
-          title="Go to Score Screen"
-          onPress={() => navigation.navigate("Score")}
-        />
-        <Text>Game Board Screen</Text>
-        <Text>Moves: {moves}</Text>
-        <Text>{hasWon ? `You won in ${moves} moves!` : "Play!"}</Text>
-        <View style={styles.boardContainer}>
-          {board.map((cell, index) => (
-            <View style={styles.row} key={index}>
-              {cell.map((innerCell, innerIndex) => (
-                <Cell
-                  coords={`${index}-${innerIndex}`}
-                  key={`${index}-${innerIndex}`}
-                  isLit={board[index][innerIndex]}
-                  handlePress={handlePress}
-                />
-              ))}
-            </View>
-          ))}
-        </View>
+      <Button
+        title="Go to Score Screen"
+        onPress={() => navigation.navigate("Score")}
+      />
+      <Text>Game Board Screen</Text>
+      <Text>Moves: {moves}</Text>
+      <Text>{hasWon ? `You won in ${moves} moves!` : "Play!"}</Text>
+      <View style={styles.boardContainer}>
+        {board.map((cell, index) => (
+          <View style={styles.row} key={index}>
+            {cell.map((innerCell, innerIndex) => (
+              <Cell
+                coords={`${index}-${innerIndex}`}
+                key={`${index}-${innerIndex}`}
+                isLit={board[index][innerIndex]}
+                handlePress={handlePress}
+              />
+            ))}
+          </View>
+        ))}
       </View>
     </View>
   );

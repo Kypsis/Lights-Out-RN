@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import { NavigationStackProp } from "react-navigation-stack";
 
 import PlayMuteButton from "../components/PlayMuteButton";
+import ExitButton from "../components/ExitButton";
 
 interface Props {
   navigation: NavigationStackProp;
@@ -12,16 +13,15 @@ interface Props {
 const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
   return (
     <View style={styles.creenContainer}>
+      <ExitButton navigation={navigation} />
       <PlayMuteButton {...screenProps} />
-      <View style={{ flex: 2 }}>
-        <Button
-          title="Go to Game Board Screen"
-          onPress={() => {
-            navigation.navigate("Game");
-          }}
-        />
-        <Text>Start Game Screen</Text>
-      </View>
+      <Button
+        title="Go to Game Board Screen"
+        onPress={() => {
+          navigation.navigate("Game");
+        }}
+      />
+      <Text>Start Game Screen</Text>
     </View>
   );
 };
