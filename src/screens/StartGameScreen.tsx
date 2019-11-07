@@ -12,9 +12,7 @@ interface Props {
 const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
   return (
     <View style={styles.creenContainer}>
-      <View style={{ flex: 1, alignSelf: "flex-end" }}>
-        <PlayMuteButton {...screenProps} />
-      </View>
+      <PlayMuteButton {...screenProps} />
       <View style={{ flex: 2 }}>
         <Button
           title="Go to Game Board Screen"

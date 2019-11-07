@@ -3,11 +3,13 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import { NavigationStackProp } from "react-navigation-stack";
 
 import Cell from "../components/Cell";
+import PlayMuteButton from "../components/PlayMuteButton";
 
 import { solvable, flipCells } from "../gameLogic";
 
 interface Props {
   navigation: NavigationStackProp;
+  screenProps: any;
   rows: number;
   columns: number;
   chanceLightStartsOn: number;
@@ -15,6 +17,7 @@ interface Props {
 
 const StartGame: React.FC<Props> = ({
   navigation,
+  screenProps,
   rows = 5,
   columns = 5,
   chanceLightStartsOn = 0.2
@@ -49,26 +52,29 @@ const StartGame: React.FC<Props> = ({
 
   return (
     <View style={styles.screenContainer}>
-      <Button
-        title="Go to Score Screen"
-        onPress={() => navigation.navigate("Score")}
-      />
-      <Text>Game Board Screen</Text>
-      <Text>Moves: {moves}</Text>
-      <Text>{hasWon ? `You won in ${moves} moves!` : "Play!"}</Text>
-      <View style={styles.boardContainer}>
-        {board.map((cell, index) => (
-          <View style={styles.row} key={index}>
-            {cell.map((innerCell, innerIndex) => (
-              <Cell
-                coords={`${index}-${innerIndex}`}
-                key={`${index}-${innerIndex}`}
-                isLit={board[index][innerIndex]}
-                handlePress={handlePress}
-              />
-            ))}
-          </View>
-        ))}
+      <PlayMuteButton {...screenProps} />
+      <View style={{ flex: 3 }}>
+        <Button
+          title="Go to Score Screen"
+          onPress={() => navigation.navigate("Score")}
+        />
+        <Text>Game Board Screen</Text>
+        <Text>Moves: {moves}</Text>
+        <Text>{hasWon ? `You won in ${moves} moves!` : "Play!"}</Text>
+        <View style={styles.boardContainer}>
+          {board.map((cell, index) => (
+            <View style={styles.row} key={index}>
+              {cell.map((innerCell, innerIndex) => (
+                <Cell
+                  coords={`${index}-${innerIndex}`}
+                  key={`${index}-${innerIndex}`}
+                  isLit={board[index][innerIndex]}
+                  handlePress={handlePress}
+                />
+              ))}
+            </View>
+          ))}
+        </View>
       </View>
     </View>
   );
