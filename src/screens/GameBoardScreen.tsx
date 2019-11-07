@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import { Button } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
 
 import Cell from "../components/Cell";
 import PlayMuteButton from "../components/PlayMuteButton";
-import ExitButton from "../components/ExitButton";
+import ExitModal from "../components/ExitModal";
+import GameWonModal from "../components/GameWonModal";
 
 import { solvable, flipCells } from "../gameLogic";
 
@@ -19,8 +21,8 @@ interface Props {
 const StartGame: React.FC<Props> = ({
   navigation,
   screenProps,
-  rows = 5,
-  columns = 5,
+  rows = 3,
+  columns = 3,
   chanceLightStartsOn = 0.2
 }) => {
   const [board, setBoard] = useState([]);
@@ -30,6 +32,13 @@ const StartGame: React.FC<Props> = ({
   useEffect(() => {
     createBoard();
   }, []);
+
+  const newGame = (): void => {
+    setBoard([]);
+    setMoves(0);
+    setHasWon(false);
+    createBoard();
+  };
 
   const createBoard = (): void => {
     const newBoard: Array<Array<Boolean>> = [...Array(rows)].map(rowItem =>
@@ -53,15 +62,27 @@ const StartGame: React.FC<Props> = ({
 
   return (
     <View style={styles.screenContainer}>
-      <ExitButton navigation={navigation} />
+      <ExitModal navigation={navigation} />
+      <GameWonModal
+        navigation={navigation}
+        hasWon={hasWon}
+        moves={moves}
+        newGame={newGame}
+      />
       <PlayMuteButton {...screenProps} />
       <Button
+        containerStyle={{ margin: 5 }}
+        raised
         title="Go to Score Screen"
         onPress={() => navigation.navigate("Score")}
       />
-      <Text>Game Board Screen</Text>
+      <Button
+        containerStyle={{ margin: 5 }}
+        raised
+        title="Restart Game"
+        onPress={newGame}
+      />
       <Text>Moves: {moves}</Text>
-      <Text>{hasWon ? `You won in ${moves} moves!` : "Play!"}</Text>
       <View style={styles.boardContainer}>
         {board.map((cell, index) => (
           <View style={styles.row} key={index}>

@@ -37,7 +37,7 @@ const ExitButton: React.FC<Props> = ({ navigation }) => {
         <Text style={styles.text}>Exit game?</Text>
         <View style={{ flexDirection: "row" }}>
           <Button
-            containerStyle={{ margin: 5, width: 90 }}
+            containerStyle={{ margin: 8, width: 90 }}
             title="Yes"
             titleStyle={{ padding: 10 }}
             raised
@@ -45,7 +45,7 @@ const ExitButton: React.FC<Props> = ({ navigation }) => {
             onPress={handleExit}
           />
           <Button
-            containerStyle={{ margin: 5, width: 90 }}
+            containerStyle={{ margin: 8, width: 90 }}
             title="No"
             titleStyle={{ padding: 10 }}
             raised
