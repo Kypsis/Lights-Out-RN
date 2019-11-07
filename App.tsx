@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
 import StartGameScreen from "./src/screens/StartGameScreen";
 import GameBoardScreen from "./src/screens/GameBoardScreen";
 import ScoreBoardScreen from "./src/screens/ScoreBoardScreen";
-import { playMusic } from "./src/gameLogic";
+import { playMusic, unloadMusic } from "./src/musicController";
 
 const navigator = createStackNavigator(
   {
@@ -22,7 +22,14 @@ const navigator = createStackNavigator(
 const App = createAppContainer(navigator);
 
 export default () => {
-  const [playMusic, setPlayMusic] = useState(false);
+  const [playMusicState, setPlayMusicState] = useState(false);
 
-  return <App screenProps={{ playMusic, setPlayMusic }} />;
+  useEffect(() => {
+    playMusic(true);
+    return () => {
+      unloadMusic();
+    };
+  }, []);
+
+  return <App screenProps={{ playMusicState, setPlayMusicState }} />;
 };

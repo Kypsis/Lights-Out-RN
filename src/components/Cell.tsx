@@ -2,9 +2,9 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 
 interface Props {
-  coords: any;
-  key?: any;
-  isLit: any;
+  coords: string;
+  key?: string;
+  isLit: boolean;
   handlePress: any;
 }
 

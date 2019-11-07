@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import { NavigationStackProp } from "react-navigation-stack";
 
 import Cell from "../components/Cell";
 
-import { solvable, flipCells, Props } from "../gameLogic";
+import { solvable, flipCells } from "../gameLogic";
+
+interface Props {
+  navigation: NavigationStackProp;
+  rows: number;
+  columns: number;
+  chanceLightStartsOn: number;
+}
 
 const StartGame: React.FC<Props> = ({
   navigation,
@@ -11,9 +19,9 @@ const StartGame: React.FC<Props> = ({
   columns = 5,
   chanceLightStartsOn = 0.2
 }) => {
-  const [hasWon, setHasWon] = useState(false);
   const [board, setBoard] = useState([]);
   const [moves, setMoves] = useState(0);
+  const [hasWon, setHasWon] = useState(false);
 
   useEffect(() => {
     createBoard();
