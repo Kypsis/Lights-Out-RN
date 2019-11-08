@@ -5,6 +5,7 @@ import { NavigationStackProp } from "react-navigation-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import PlayMuteButton from "../components/PlayMuteButton";
+import GameButton from "../components/GameButton";
 import ExitModal from "../components/ExitModal";
 
 interface Props {
@@ -13,7 +14,7 @@ interface Props {
 }
 
 const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
-  const { playerName, setPlayerName } = screenProps;
+  const { playerName, setPlayerName, fontLoaded } = screenProps;
 
   useEffect(() => {
     const focusListener = navigation.addListener("didFocus", () => {
@@ -33,16 +34,16 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
       <ExitModal navigation={navigation} />
       <PlayMuteButton {...screenProps} />
       <View style={styles.titleContainer}>
-        <Text style={styles.textLeft}>Lights</Text>
-        <Text style={styles.textRight}>Out</Text>
+        {fontLoaded ? <Text style={styles.textLeft}>Lights</Text> : null}
+        {fontLoaded ? <Text style={styles.textRight}>Out</Text> : null}
       </View>
-
       <Card
         containerStyle={styles.cardContainer}
         title="Please Enter Your Name"
-        titleStyle={{ fontSize: 20 }}
+        titleStyle={{ fontSize: 20, color: "black" }}
       >
         <Input
+          inputStyle={{ color: "#4f5b62" }}
           selectTextOnFocus
           leftIconContainerStyle={{ marginRight: 10 }}
           value={playerName}
@@ -51,14 +52,14 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
             <MaterialCommunityIcons name="pencil" size={24} color="black" />
           }
         />
-        <Button
-          containerStyle={{ marginHorizontal: 10, marginTop: 25 }}
-          raised
-          title="Play"
-          onPress={() => {
-            navigation.navigate("Game");
-          }}
-        />
+        <View style={styles.buttonContainer}>
+          <GameButton
+            title="Play"
+            iconName="lightbulb-on"
+            iconColor="gold"
+            callback={() => navigation.navigate("Game")}
+          />
+        </View>
       </Card>
     </KeyboardAvoidingView>
   );
@@ -70,40 +71,51 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "green"
+    backgroundColor: "rgb(25, 25, 25)"
   },
   cardContainer: {
+    borderWidth: 0,
     alignSelf: "stretch",
     borderRadius: 5,
-    backgroundColor: "rgba(145, 145, 145,0.7)",
-    marginHorizontal: 30
+    backgroundColor: "#F5F5F6",
+    marginHorizontal: 20
   },
   titleContainer: {
+    justifyContent: "center",
+    alignSelf: "stretch",
     flexDirection: "row",
-    backgroundColor: "teal",
+    backgroundColor: "#0277bd",
     marginBottom: 10,
-    marginHorizontal: 15,
+    marginHorizontal: 20,
     borderRadius: 10,
     borderWidth: 2,
     borderColor: "rgb(245, 245, 245)",
     elevation: 8
   },
+  buttonContainer: {
+    alignSelf: "center",
+    marginHorizontal: 10,
+    marginTop: 25,
+    marginBottom: 8,
+    width: 200
+  },
   textLeft: {
-    fontSize: 50,
-    color: "orange",
+    fontFamily: "orbitron-medium",
+    fontSize: 40,
+    color: "#ffb300",
     paddingLeft: 15,
     paddingRight: 5,
-    textShadowColor: "darkgoldenrod",
+    textShadowColor: "#c68400",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2
   },
   textRight: {
-    fontSize: 60,
-    fontStyle: "italic",
-    color: "gray",
+    fontFamily: "orbitron-medium",
+    fontSize: 50,
+    color: "#37474f",
     paddingLeft: 5,
     paddingRight: 15,
-    textShadowColor: "rgb(99, 99, 99)",
+    textShadowColor: "#102027",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2
   }

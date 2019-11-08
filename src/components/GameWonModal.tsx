@@ -21,7 +21,7 @@ const GameWonModal: React.FC<Props> = ({
   newGame,
   playerName
 }) => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     setShow(hasWon);
@@ -44,7 +44,7 @@ const GameWonModal: React.FC<Props> = ({
     <Overlay
       isVisible={show}
       height={300}
-      overlayStyle={{ backgroundColor: "rgba(245, 245, 245, 0.95)" }}
+      overlayStyle={{ backgroundColor: "#E1E2E1" }}
     >
       <View style={styles.container}>
         <Text style={styles.heading}>You Win!</Text>
@@ -53,8 +53,8 @@ const GameWonModal: React.FC<Props> = ({
         <View>
           <Button
             containerStyle={{ margin: 8, width: 200 }}
-            title="Show High Score"
             titleStyle={{ padding: 10 }}
+            title="Show High Score"
             raised
             icon={
               <MaterialCommunityIcons
@@ -67,8 +67,8 @@ const GameWonModal: React.FC<Props> = ({
           />
           <Button
             containerStyle={{ margin: 8, width: 200 }}
-            title="Replay"
             titleStyle={{ padding: 10 }}
+            title="Replay"
             raised
             icon={
               <MaterialCommunityIcons name="restart" size={20} color="green" />

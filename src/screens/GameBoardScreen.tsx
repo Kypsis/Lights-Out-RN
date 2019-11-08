@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Cell from "../components/Cell";
 import PlayMuteButton from "../components/PlayMuteButton";
 import ExitModal from "../components/ExitModal";
 import GameWonModal from "../components/GameWonModal";
+import GameButton from "../components/GameButton";
 
 import { solvable, flipCells } from "../gameLogic";
 
@@ -21,8 +23,8 @@ interface Props {
 const StartGame: React.FC<Props> = ({
   navigation,
   screenProps,
-  rows = 3,
-  columns = 3,
+  rows = 5,
+  columns = 5,
   chanceLightStartsOn = 0.2
 }) => {
   const [board, setBoard] = useState([]);
@@ -71,22 +73,12 @@ const StartGame: React.FC<Props> = ({
         playerName={screenProps.playerName}
       />
       <PlayMuteButton {...screenProps} />
-      <Button
-        containerStyle={{ margin: 5 }}
-        raised
-        title="Go to Score Screen"
-        onPress={() => navigation.navigate("Score")}
-      />
-      <Button
-        containerStyle={{ margin: 5 }}
-        raised
-        title="Restart Game"
-        onPress={newGame}
-      />
-      <Text>Moves: {moves}</Text>
+      {screenProps.fontLoaded ? (
+        <Text style={styles.textStyle}>Moves: {moves}</Text>
+      ) : null}
       <View style={styles.boardContainer}>
         {board.map((cell, index) => (
-          <View style={styles.row} key={index}>
+          <View style={styles.rowStyle} key={index}>
             {cell.map((innerCell, innerIndex) => (
               <Cell
                 coords={`${index}-${innerIndex}`}
@@ -98,6 +90,18 @@ const StartGame: React.FC<Props> = ({
           </View>
         ))}
       </View>
+      <GameButton
+        title="Go to Score Screen"
+        iconName="certificate"
+        iconColor="gold"
+        callback={() => navigation.navigate("Score")}
+      />
+      <GameButton
+        title="Restart Game"
+        iconName="restart"
+        iconColor="deepskyblue"
+        callback={newGame}
+      />
     </View>
   );
 };
@@ -108,15 +112,26 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "yellow"
+    backgroundColor: "rgb(25, 25, 25)"
   },
   boardContainer: {
+    borderRadius: 10,
+    borderWidth: 5,
+    borderColor: "#263238",
+    padding: 5,
     height: 300,
     width: 300,
-    backgroundColor: "rgb(245, 245, 245)",
-    flexWrap: "wrap"
+    backgroundColor: "#455a64",
+    flexWrap: "wrap",
+    marginBottom: 10
   },
-  row: { flexDirection: "row" }
+  rowStyle: { flexDirection: "row", flex: 1 },
+  textStyle: {
+    fontFamily: "orbitron-medium",
+    fontSize: 20,
+    padding: 10,
+    color: "white"
+  }
 });
 
 export default StartGame;

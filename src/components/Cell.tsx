@@ -11,22 +11,24 @@ interface Props {
 const Cell: React.FC<Props> = ({ isLit, coords, handlePress }) => {
   return (
     <TouchableOpacity
+      style={{
+        ...styles.cell,
+        backgroundColor: isLit ? "#fffd61" : "#aeaeae"
+      }}
       onPress={() => {
         handlePress(coords);
       }}
-    >
-      <View
-        style={{ ...styles.cell, backgroundColor: isLit ? "purple" : "gray" }}
-      ></View>
-    </TouchableOpacity>
+    ></TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   cell: {
-    height: 50,
-    width: 50,
-    margin: 5
+    flex: 1,
+    borderWidth: 2,
+    borderColor: "gray",
+    borderRadius: 10,
+    margin: 2
   }
 });
 

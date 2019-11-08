@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import { Card, Button, ListItem } from "react-native-elements";
+import { Button, ListItem } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import PlayMuteButton from "../components/PlayMuteButton";
 import ExitModal from "../components/ExitModal";
+import ConfirmModal from "../components/ConfirmModal";
+import GameButton from "../components/GameButton";
 
-import { getHighScores, setHighScores, clearScores } from "../asyncStorage";
+import { getHighScores } from "../asyncStorage";
 
 interface Props {
   navigation: NavigationStackProp;
@@ -15,7 +17,9 @@ interface Props {
 }
 
 const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
-  const { scoreboard, setScoreboard } = screenProps;
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
+  const { scoreboard, setScoreboard, fontLoaded } = screenProps;
 
   useEffect(() => {
     getHighScores(setScoreboard);
@@ -24,41 +28,45 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
   return (
     <View style={styles.screenContainer}>
       <ExitModal navigation={navigation} />
+      <ConfirmModal show={showConfirmModal} setShow={setShowConfirmModal} />
       <PlayMuteButton {...screenProps} />
       <View style={styles.listContainer}>
-        <Text style={styles.textStyle}>High Score</Text>
+        {fontLoaded ? <Text style={styles.textStyle}>High Score</Text> : null}
         <FlatList
           data={scoreboard}
-          renderItem={({ item }) => (
+          renderItem={({ item }: any) => (
             <ListItem
               containerStyle={{
-                backgroundColor: "rgba(245, 245, 245,1)"
+                backgroundColor: "#F5F5F6"
               }}
               title={item.name}
               badge={{
                 value: item.score,
-                badgeStyle: { backgroundColor: "black", height: 30, width: 30 }
+                badgeStyle: {
+                  backgroundColor: "#4f5b62",
+                  height: 30,
+                  width: 30
+                },
+                textStyle: { color: "#ffe54c", fontSize: 17 }
               }}
+              topDivider
               bottomDivider
             />
           )}
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
-      <Button
-        containerStyle={{ margin: 8, width: 200 }}
+      <GameButton
         title="Clear Scores"
-        titleStyle={{ padding: 10 }}
-        raised
-        onPress={clearScores}
+        iconName="trash-can-outline"
+        iconColor="gainsboro"
+        callback={() => setShowConfirmModal(true)}
       />
-      <Button
-        containerStyle={{ margin: 8, width: 200 }}
+      <GameButton
         title="Replay"
-        titleStyle={{ padding: 10 }}
-        raised
-        icon={<MaterialCommunityIcons name="restart" size={20} color="green" />}
-        onPress={() => navigation.navigate("Game")}
+        iconName="restart"
+        iconColor="deepskyblue"
+        callback={() => navigation.navigate("Game")}
       />
     </View>
   );
@@ -70,22 +78,24 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "red"
+    backgroundColor: "rgb(25, 25, 25)"
   },
   listContainer: {
     height: 400,
     alignSelf: "stretch",
     borderRadius: 10,
-    backgroundColor: "rgba(245, 245, 245,1)",
-    marginHorizontal: 10,
+    backgroundColor: "#F5F5F6",
+    marginHorizontal: 20,
     padding: 10,
-    marginTop: 45,
+    marginTop: 50,
     marginBottom: 10
   },
   textStyle: {
+    fontFamily: "orbitron-medium",
     alignSelf: "center",
     fontSize: 40,
-    fontWeight: "400"
+    fontWeight: "400",
+    paddingBottom: 10
   }
 });
 

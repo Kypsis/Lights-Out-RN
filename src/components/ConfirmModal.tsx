@@ -1,36 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { BackHandler } from "react-native";
-import { NavigationStackProp } from "react-navigation-stack";
+import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Overlay, Button } from "react-native-elements";
 import { Entypo } from "@expo/vector-icons";
 
+import { clearScores } from "../asyncStorage";
+
 interface Props {
-  navigation: NavigationStackProp;
+  show: boolean;
+  setShow(arg);
 }
 
-const ExitModal: React.FC<Props> = ({ navigation }) => {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    const backhandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      () => {
-        setShow(true);
-        return true;
-      }
-    );
-    return () => {
-      backhandler.remove();
-    };
-  }, []);
-
-  const handleExit = (): void => {
-    setShow(false);
-    navigation.navigate("Start");
-    BackHandler.exitApp();
-  };
-
+const ConfirmModal: React.FC<Props> = ({ show, setShow }) => {
   return (
     <Overlay
       isVisible={show}
@@ -38,7 +18,7 @@ const ExitModal: React.FC<Props> = ({ navigation }) => {
       overlayStyle={{ backgroundColor: "#E1E2E1" }}
     >
       <View style={styles.container}>
-        <Text style={styles.text}>Exit game?</Text>
+        <Text style={styles.text}>Clear High Score?</Text>
         <View style={{ flexDirection: "row" }}>
           <Button
             containerStyle={{ margin: 8, width: 90 }}
@@ -46,7 +26,10 @@ const ExitModal: React.FC<Props> = ({ navigation }) => {
             titleStyle={{ padding: 10 }}
             raised
             icon={<Entypo name="check" size={20} color="green" />}
-            onPress={handleExit}
+            onPress={() => {
+              clearScores();
+              setShow(false);
+            }}
           />
           <Button
             containerStyle={{ margin: 8, width: 90 }}
@@ -72,9 +55,9 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   text: {
-    fontSize: 36,
+    fontSize: 30,
     padding: 10
   }
 });
 
-export default ExitModal;
+export default ConfirmModal;
