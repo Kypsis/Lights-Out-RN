@@ -56,14 +56,12 @@ const GameWonModal: React.FC<Props> = ({
             title="Show High Score"
             iconName="certificate"
             iconColor="gold"
-            width={90}
             callback={showHighScore}
           />
           <GameButton
             title="Replay"
             iconName="restart"
             iconColor="darkgreen"
-            width={90}
             callback={() => setShow(false)}
           />
         </View>
