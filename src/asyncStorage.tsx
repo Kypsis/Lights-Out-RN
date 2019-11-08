@@ -13,7 +13,7 @@ export const getHighScores = async setState => {
   try {
     const request = await AsyncStorage.getItem("highscore");
     const scores = await JSON.parse(request);
-    setState(scores);
+    scores ? setState(scores) : setState([]);
   } catch (error) {
     console.log(error);
   }
