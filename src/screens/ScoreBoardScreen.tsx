@@ -7,12 +7,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import PlayMuteButton from "../components/PlayMuteButton";
 import ExitModal from "../components/ExitModal";
 
-import {
-  players,
-  getHighScores,
-  setHighScores,
-  clearScores
-} from "../asyncStorage";
+import { getHighScores, setHighScores, clearScores } from "../asyncStorage";
 
 interface Props {
   navigation: NavigationStackProp;
@@ -53,7 +48,9 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
         title="Store Data"
         titleStyle={{ padding: 10 }}
         raised
-        onPress={setHighScores}
+        onPress={() =>
+          setHighScores("Test", Math.floor(Math.random() * 10) + 1)
+        }
       />
       <Button
         containerStyle={{ margin: 8, width: 200 }}
