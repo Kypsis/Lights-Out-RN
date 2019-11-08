@@ -8,6 +8,7 @@ interface Props {
   navigation: NavigationStackProp;
   hasWon: boolean;
   moves: number;
+  playerName: string;
   newGame(): void;
 }
 
@@ -15,7 +16,8 @@ const GameWonModal: React.FC<Props> = ({
   navigation,
   hasWon,
   moves,
-  newGame
+  newGame,
+  playerName
 }) => {
   const [show, setShow] = useState(true);
 
@@ -37,11 +39,12 @@ const GameWonModal: React.FC<Props> = ({
   return (
     <Overlay
       isVisible={show}
-      height={280}
-      overlayStyle={{ backgroundColor: "rgb(245, 245, 245)" }}
+      height={300}
+      overlayStyle={{ backgroundColor: "rgba(245, 245, 245, 0.95)" }}
     >
       <View style={styles.container}>
         <Text style={styles.heading}>You Win!</Text>
+        <Text style={styles.text}>{playerName}</Text>
         <Text style={styles.text}>You won in {moves} moves.</Text>
         <View>
           <Button
@@ -79,8 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgb(245, 245, 245)"
+    alignItems: "center"
   },
   heading: {
     fontSize: 36,

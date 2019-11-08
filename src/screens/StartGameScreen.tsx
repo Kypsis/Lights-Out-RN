@@ -15,6 +15,15 @@ interface Props {
 const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
   const { playerName, setPlayerName } = screenProps;
 
+  useEffect(() => {
+    const focusListener = navigation.addListener("didFocus", () => {
+      setPlayerName("Anonymous");
+    });
+    return () => {
+      focusListener.remove();
+    };
+  }, []);
+
   return (
     <KeyboardAvoidingView
       style={styles.screenContainer}
@@ -34,11 +43,12 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
         titleStyle={{ fontSize: 20 }}
       >
         <Input
+          selectTextOnFocus
           leftIconContainerStyle={{ marginRight: 10 }}
           value={playerName}
           onChangeText={playerName => setPlayerName(playerName)}
           leftIcon={
-            <MaterialCommunityIcons name="pencil" size={24} color="gray" />
+            <MaterialCommunityIcons name="pencil" size={24} color="black" />
           }
         />
         <Button
@@ -64,8 +74,8 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     alignSelf: "stretch",
-    borderRadius: 10,
-    backgroundColor: "rgb(245, 245, 245)",
+    borderRadius: 5,
+    backgroundColor: "rgba(145, 145, 145,0.7)",
     marginHorizontal: 30
   },
   titleContainer: {

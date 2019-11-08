@@ -68,6 +68,7 @@ const StartGame: React.FC<Props> = ({
         hasWon={hasWon}
         moves={moves}
         newGame={newGame}
+        playerName={screenProps.playerName}
       />
       <PlayMuteButton {...screenProps} />
       <Button
