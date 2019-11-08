@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BackHandler } from "react-native";
 import { NavigationStackProp } from "react-navigation-stack";
 import { View, Text, StyleSheet } from "react-native";
-import { Overlay, Button } from "react-native-elements";
-import { Entypo } from "@expo/vector-icons";
+import { Overlay } from "react-native-elements";
+
+import GameButton from "../components/GameButton";
 
 interface Props {
   navigation: NavigationStackProp;
@@ -40,23 +41,19 @@ const ExitModal: React.FC<Props> = ({ navigation }) => {
       <View style={styles.container}>
         <Text style={styles.text}>Exit game?</Text>
         <View style={{ flexDirection: "row" }}>
-          <Button
-            containerStyle={{ margin: 8, width: 90 }}
+          <GameButton
             title="Yes"
-            titleStyle={{ padding: 10 }}
-            raised
-            icon={<Entypo name="check" size={20} color="green" />}
-            onPress={handleExit}
+            iconName="check"
+            iconColor="darkgreen"
+            width={90}
+            callback={handleExit}
           />
-          <Button
-            containerStyle={{ margin: 8, width: 90 }}
+          <GameButton
             title="No"
-            titleStyle={{ padding: 10 }}
-            raised
-            icon={<Entypo name="cross" size={20} color="red" />}
-            onPress={() => {
-              setShow(false);
-            }}
+            iconName="close"
+            iconColor="red"
+            width={90}
+            callback={() => setShow(false)}
           />
         </View>
       </View>
@@ -72,7 +69,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   text: {
-    fontSize: 36,
+    fontSize: 25,
     padding: 10
   }
 });

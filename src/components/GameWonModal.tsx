@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { NavigationStackProp } from "react-navigation-stack";
 import { View, Text, StyleSheet } from "react-native";
-import { Overlay, Button } from "react-native-elements";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Overlay } from "react-native-elements";
+
+import GameButton from "../components/GameButton";
 
 import { setHighScores } from "../asyncStorage";
 
@@ -51,29 +52,19 @@ const GameWonModal: React.FC<Props> = ({
         <Text style={styles.text}>{playerName}</Text>
         <Text style={styles.text}>You won in {moves} moves.</Text>
         <View>
-          <Button
-            containerStyle={{ margin: 8, width: 200 }}
-            titleStyle={{ padding: 10 }}
+          <GameButton
             title="Show High Score"
-            raised
-            icon={
-              <MaterialCommunityIcons
-                name="certificate"
-                size={20}
-                color="gold"
-              />
-            }
-            onPress={showHighScore}
+            iconName="certificate"
+            iconColor="gold"
+            width={90}
+            callback={showHighScore}
           />
-          <Button
-            containerStyle={{ margin: 8, width: 200 }}
-            titleStyle={{ padding: 10 }}
+          <GameButton
             title="Replay"
-            raised
-            icon={
-              <MaterialCommunityIcons name="restart" size={20} color="green" />
-            }
-            onPress={replay}
+            iconName="restart"
+            iconColor="darkgreen"
+            width={90}
+            callback={() => setShow(false)}
           />
         </View>
       </View>

@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { Overlay, Button } from "react-native-elements";
-import { Entypo } from "@expo/vector-icons";
+import { Overlay } from "react-native-elements";
+
+import GameButton from "../components/GameButton";
 
 import { clearScores } from "../asyncStorage";
 
@@ -20,26 +21,22 @@ const ConfirmModal: React.FC<Props> = ({ show, setShow }) => {
       <View style={styles.container}>
         <Text style={styles.text}>Clear High Score?</Text>
         <View style={{ flexDirection: "row" }}>
-          <Button
-            containerStyle={{ margin: 8, width: 90 }}
+          <GameButton
             title="Yes"
-            titleStyle={{ padding: 10 }}
-            raised
-            icon={<Entypo name="check" size={20} color="green" />}
-            onPress={() => {
+            iconName="check"
+            iconColor="darkgreen"
+            width={90}
+            callback={() => {
               clearScores();
               setShow(false);
             }}
           />
-          <Button
-            containerStyle={{ margin: 8, width: 90 }}
+          <GameButton
             title="No"
-            titleStyle={{ padding: 10 }}
-            raised
-            icon={<Entypo name="cross" size={20} color="red" />}
-            onPress={() => {
-              setShow(false);
-            }}
+            iconName="close"
+            iconColor="red"
+            width={90}
+            callback={() => setShow(false)}
           />
         </View>
       </View>
@@ -55,7 +52,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   text: {
-    fontSize: 30,
+    fontSize: 25,
     padding: 10
   }
 });

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import { Button, ListItem } from "react-native-elements";
+import { ListItem } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import PlayMuteButton from "../components/PlayMuteButton";
 import ExitModal from "../components/ExitModal";

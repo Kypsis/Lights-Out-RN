@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet, KeyboardAvoidingView } from "react-native";
-import { Input, Button, Card } from "react-native-elements";
+import { Input, Card } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     flexDirection: "row",
     backgroundColor: "#0277bd",
-    marginBottom: 10,
     marginHorizontal: 20,
     borderRadius: 10,
     borderWidth: 2,
