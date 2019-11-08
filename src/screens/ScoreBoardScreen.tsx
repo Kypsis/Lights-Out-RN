@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Card, Button } from "react-native-elements";
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet, FlatList } from "react-native";
+import { Card, Button, ListItem } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -15,26 +15,43 @@ interface Props {
 }
 
 const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
-  const [playersAndScores, setPlayersAndScores] = useState([]);
+  const { scoreboard, setScoreboard } = screenProps;
+
+  useEffect(() => {
+    getHighScores(setScoreboard);
+  }, [scoreboard]);
 
   return (
     <View style={styles.screenContainer}>
       <ExitModal navigation={navigation} />
       <PlayMuteButton {...screenProps} />
-      <Card
-        containerStyle={styles.cardContainer}
-        title="High Scores"
-        titleStyle={{ fontSize: 25 }}
-      >
-        {playersAndScores.map((player, index) => {
-          return (
-            <View style={styles.scoreContainer} key={index}>
-              <Text style={styles.textStyle}>{player.name}</Text>
-              <Text style={styles.textStyle}>{player.score}</Text>
-            </View>
-          );
-        })}
-      </Card>
+      <View style={styles.listContainer}>
+        <Text style={styles.textStyle}>High Score</Text>
+        <FlatList
+          data={scoreboard}
+          renderItem={({ item }) => (
+            <ListItem
+              containerStyle={{
+                backgroundColor: "rgba(245, 245, 245,1)"
+              }}
+              title={item.name}
+              badge={{
+                value: item.score,
+                badgeStyle: { backgroundColor: "black", height: 30, width: 30 }
+              }}
+              bottomDivider
+            />
+          )}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
+      <Button
+        containerStyle={{ margin: 8, width: 200 }}
+        title="Clear Scores"
+        titleStyle={{ padding: 10 }}
+        raised
+        onPress={clearScores}
+      />
       <Button
         containerStyle={{ margin: 8, width: 200 }}
         title="Replay"
@@ -42,31 +59,6 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
         raised
         icon={<MaterialCommunityIcons name="restart" size={20} color="green" />}
         onPress={() => navigation.navigate("Game")}
-      />
-      <Button
-        containerStyle={{ margin: 8, width: 200 }}
-        title="Store Data"
-        titleStyle={{ padding: 10 }}
-        raised
-        onPress={() =>
-          setHighScores("Test", Math.floor(Math.random() * 10) + 1)
-        }
-      />
-      <Button
-        containerStyle={{ margin: 8, width: 200 }}
-        title="Retrieve Data"
-        titleStyle={{ padding: 10 }}
-        raised
-        onPress={() => {
-          getHighScores(setPlayersAndScores);
-        }}
-      />
-      <Button
-        containerStyle={{ margin: 8, width: 200 }}
-        title="Clear Scores"
-        titleStyle={{ padding: 10 }}
-        raised
-        onPress={clearScores}
       />
     </View>
   );
@@ -80,19 +72,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "red"
   },
-  scoreContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 20,
-    paddingVertical: 3
-  },
-  cardContainer: {
+  listContainer: {
+    height: 400,
     alignSelf: "stretch",
     borderRadius: 10,
-    backgroundColor: "rgba(245, 245, 245,1)"
+    backgroundColor: "rgba(245, 245, 245,1)",
+    marginHorizontal: 10,
+    padding: 10,
+    marginTop: 45,
+    marginBottom: 10
   },
   textStyle: {
-    fontSize: 20,
+    alignSelf: "center",
+    fontSize: 40,
     fontWeight: "400"
   }
 });

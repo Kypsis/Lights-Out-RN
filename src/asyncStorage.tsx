@@ -1,6 +1,6 @@
 import { AsyncStorage } from "react-native";
 
-export const setHighScores = async (name: string, score: any) => {
+export const setHighScores = async (name: string, score: number) => {
   try {
     const request = await AsyncStorage.getItem("highscore");
     const scores = await JSON.parse(request);

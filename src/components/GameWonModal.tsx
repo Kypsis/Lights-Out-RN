@@ -4,6 +4,8 @@ import { View, Text, StyleSheet } from "react-native";
 import { Overlay, Button } from "react-native-elements";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+import { setHighScores } from "../asyncStorage";
+
 interface Props {
   navigation: NavigationStackProp;
   hasWon: boolean;
@@ -27,12 +29,14 @@ const GameWonModal: React.FC<Props> = ({
 
   const showHighScore = (): void => {
     setShow(false);
+    setHighScores(playerName, moves);
     newGame();
     navigation.navigate("Score");
   };
 
   const replay = (): void => {
     setShow(false);
+    setHighScores(playerName, moves);
     newGame();
   };
 

@@ -24,6 +24,7 @@ const App = createAppContainer(navigator);
 export default () => {
   const [playMusicState, setPlayMusicState] = useState(false);
   const [playerName, setPlayerName] = useState("Anonymous");
+  const [scoreboard, setScoreboard] = useState([]);
 
   useEffect(() => {
     playMusic(true);
@@ -38,7 +39,9 @@ export default () => {
         playMusicState,
         setPlayMusicState,
         playerName,
-        setPlayerName
+        setPlayerName,
+        scoreboard,
+        setScoreboard
       }}
     />
   );
