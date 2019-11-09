@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+import { ScreenOrientation } from "expo";
 import * as Font from "expo-font";
 
 import StartGameScreen from "./src/screens/StartGameScreen";
@@ -42,6 +43,14 @@ export default () => {
       });
       setFontLoaded(true);
     })();
+  }, []);
+
+  useEffect(() => {
+    async function changeScreenOrientation() {
+      await ScreenOrientation.lockAsync(
+        ScreenOrientation.OrientationLock.PORTRAIT
+      );
+    }
   }, []);
 
   return (
