@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { playMusic } from "../musicController";
+import { playMusic } from "../utilities/musicController";
 import { Octicons } from "@expo/vector-icons";
 
 interface Props {

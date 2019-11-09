@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     justifyContent: "center",
+    alignItems: "center",
     alignSelf: "stretch",
     flexDirection: "row",
     backgroundColor: "#0277bd",
@@ -89,7 +90,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 2,
     borderColor: "rgb(245, 245, 245)",
-    elevation: 8
+    elevation: 8,
+    height: 80
   },
   buttonContainer: {
     alignSelf: "center",
@@ -114,6 +116,7 @@ const styles = StyleSheet.create({
     color: "#37474f",
     paddingLeft: 5,
     paddingRight: 15,
+    paddingTop: 10,
     textShadowColor: "#102027",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2

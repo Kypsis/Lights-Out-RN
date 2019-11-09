@@ -11,7 +11,7 @@ export const playMusic = async (play: boolean) => {
           firstRun = false;
         }
         if (!soundObject._loaded) {
-          await soundObject.loadAsync(require("../assets/theme.mp3"), {
+          await soundObject.loadAsync(require("../../assets/theme.mp3"), {
             isLooping: true
           });
         }

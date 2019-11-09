@@ -4,7 +4,7 @@ import { Overlay } from "react-native-elements";
 
 import GameButton from "../components/GameButton";
 
-import { clearScores } from "../asyncStorage";
+import { clearScores } from "../utilities/asyncStorage";
 
 interface Props {
   show: boolean;

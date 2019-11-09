@@ -6,7 +6,7 @@ import * as Font from "expo-font";
 import StartGameScreen from "./src/screens/StartGameScreen";
 import GameBoardScreen from "./src/screens/GameBoardScreen";
 import ScoreBoardScreen from "./src/screens/ScoreBoardScreen";
-import { playMusic, unloadMusic } from "./src/musicController";
+import { playMusic, unloadMusic } from "./src/utilities/musicController";
 
 const navigator = createStackNavigator(
   {

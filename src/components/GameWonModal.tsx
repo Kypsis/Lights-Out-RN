@@ -5,7 +5,7 @@ import { Overlay } from "react-native-elements";
 
 import GameButton from "../components/GameButton";
 
-import { setHighScores } from "../asyncStorage";
+import { setHighScores } from "../utilities/asyncStorage";
 
 interface Props {
   navigation: NavigationStackProp;

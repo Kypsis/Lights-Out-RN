@@ -8,7 +8,8 @@ import ExitModal from "../components/ExitModal";
 import GameWonModal from "../components/GameWonModal";
 import GameButton from "../components/GameButton";
 
-import { solvable, flipCells } from "../gameLogic";
+import { solvable, flipCells } from "../utilities/gameLogic";
+import { screenWidth } from "../utilities/screenDimensions";
 
 interface Props {
   navigation: NavigationStackProp;
@@ -74,7 +75,13 @@ const StartGame: React.FC<Props> = ({
       {screenProps.fontLoaded ? (
         <Text style={styles.textStyle}>Moves: {moves}</Text>
       ) : null}
-      <View style={styles.boardContainer}>
+      <View
+        style={{
+          ...styles.boardContainer,
+          height: screenWidth - 20,
+          width: screenWidth - 20
+        }}
+      >
         {board.map((cell, index) => (
           <View style={styles.rowStyle} key={index}>
             {cell.map((innerCell, innerIndex) => (
@@ -89,7 +96,7 @@ const StartGame: React.FC<Props> = ({
         ))}
       </View>
       <GameButton
-        title="Go to Score Screen"
+        title="Go to High Scores"
         iconName="certificate"
         iconColor="gold"
         callback={() => navigation.navigate("Score")}
@@ -116,9 +123,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 5,
     borderColor: "#263238",
-    padding: 5,
-    height: 300,
-    width: 300,
     backgroundColor: "#455a64",
     flexWrap: "wrap",
     marginBottom: 10

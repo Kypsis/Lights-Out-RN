@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Dimensions } from "react-native";
 import { ListItem } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
 
@@ -8,7 +8,8 @@ import ExitModal from "../components/ExitModal";
 import ConfirmModal from "../components/ConfirmModal";
 import GameButton from "../components/GameButton";
 
-import { getHighScores } from "../asyncStorage";
+import { getHighScores } from "../utilities/asyncStorage";
+import { screenHeight } from "../utilities/screenDimensions";
 
 interface Props {
   navigation: NavigationStackProp;
@@ -29,7 +30,7 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
       <ExitModal navigation={navigation} />
       <ConfirmModal show={showConfirmModal} setShow={setShowConfirmModal} />
       <PlayMuteButton {...screenProps} />
-      <View style={styles.listContainer}>
+      <View style={{ ...styles.listContainer, height: screenHeight - 240 }}>
         {fontLoaded ? <Text style={styles.textStyle}>High Score</Text> : null}
         <FlatList
           data={scoreboard}
@@ -80,12 +81,11 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(25, 25, 25)"
   },
   listContainer: {
-    height: 400,
     alignSelf: "stretch",
     borderRadius: 10,
     backgroundColor: "#F5F5F6",
     marginHorizontal: 20,
-    padding: 10,
+    paddingVertical: 20,
     marginTop: 50,
     marginBottom: 10
   },
