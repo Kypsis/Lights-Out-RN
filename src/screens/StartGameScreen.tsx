@@ -35,7 +35,7 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
       <PlayMuteButton {...screenProps} />
       <View style={styles.titleContainer}>
         <Text style={styles.textLeft}>Lights</Text>
-        <Text style={styles.textRight}>Out</Text>
+        <Text style={styles.textRight}>On</Text>
       </View>
       <Card
         containerStyle={styles.cardContainer}
@@ -103,21 +103,22 @@ const styles = StyleSheet.create({
   textLeft: {
     fontFamily: "orbitron-medium",
     fontSize: 40,
-    color: "#ffb300",
+    color: "#37474f",
     paddingLeft: 15,
     paddingRight: 5,
-    textShadowColor: "#c68400",
+    paddingBottom: 5,
+    textShadowColor: "#102027",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2
   },
   textRight: {
     fontFamily: "orbitron-medium",
     fontSize: 50,
-    color: "#37474f",
+    color: "#ffb300",
     paddingLeft: 5,
     paddingRight: 15,
     paddingTop: 10,
-    textShadowColor: "#102027",
+    textShadowColor: "#c68400",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2
   }

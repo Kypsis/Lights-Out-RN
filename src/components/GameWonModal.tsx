@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NavigationStackProp } from "react-navigation-stack";
 import { View, Text, StyleSheet } from "react-native";
 import { Overlay } from "react-native-elements";
@@ -9,41 +9,37 @@ import { setHighScores } from "../utilities/asyncStorage";
 
 interface Props {
   navigation: NavigationStackProp;
-  hasWon: boolean;
   moves: number;
   playerName: string;
+  showGameWonModal: boolean;
+  setShowGameWonModal(arg: boolean);
   newGame(): void;
 }
 
 const GameWonModal: React.FC<Props> = ({
   navigation,
-  hasWon,
+  showGameWonModal,
+  setShowGameWonModal,
   moves,
   newGame,
   playerName
 }) => {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    setShow(hasWon);
-  }, [hasWon]);
-
   const showHighScore = (): void => {
-    setShow(false);
+    setShowGameWonModal(false);
     setHighScores(playerName, moves);
     newGame();
     navigation.navigate("Score");
   };
 
   const replay = (): void => {
-    setShow(false);
+    setShowGameWonModal(false);
     setHighScores(playerName, moves);
     newGame();
   };
 
   return (
     <Overlay
-      isVisible={show}
+      isVisible={showGameWonModal}
       height={300}
       overlayStyle={{ backgroundColor: "#E1E2E1" }}
     >
@@ -62,7 +58,7 @@ const GameWonModal: React.FC<Props> = ({
             title="Replay"
             iconName="restart"
             iconColor="darkgreen"
-            callback={() => setShow(false)}
+            callback={replay}
           />
         </View>
       </View>

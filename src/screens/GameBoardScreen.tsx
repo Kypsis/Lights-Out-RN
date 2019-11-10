@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { NavigationStackProp } from "react-navigation-stack";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Cell from "../components/Cell";
 import PlayMuteButton from "../components/PlayMuteButton";
 import ExitModal from "../components/ExitModal";
 import GameWonModal from "../components/GameWonModal";
+import InstructionsModal from "../components/InstructionsModal";
 import GameButton from "../components/GameButton";
 
 import { solvable, flipCells } from "../utilities/gameLogic";
@@ -28,7 +30,8 @@ const StartGame: React.FC<Props> = ({
 }) => {
   const [board, setBoard] = useState([]);
   const [moves, setMoves] = useState(0);
-  const [hasWon, setHasWon] = useState(false);
+  const [showGameWonModal, setShowGameWonModal] = useState(false);
+  const [showInstructionsModal, setShowInstructionsModal] = useState(false);
 
   useEffect(() => {
     createBoard();
@@ -37,7 +40,7 @@ const StartGame: React.FC<Props> = ({
   const newGame = (): void => {
     setBoard([]);
     setMoves(0);
-    setHasWon(false);
+    setShowGameWonModal(false);
     createBoard();
   };
 
@@ -58,20 +61,35 @@ const StartGame: React.FC<Props> = ({
 
     setMoves(prevState => prevState + 1);
     setBoard([...flipBoard]);
-    setHasWon(allLit);
+    setShowGameWonModal(allLit);
   };
 
   return (
     <View style={styles.screenContainer}>
       <ExitModal navigation={navigation} />
+      <InstructionsModal
+        showInstructions={showInstructionsModal}
+        setShowInstructions={setShowInstructionsModal}
+      />
       <GameWonModal
         navigation={navigation}
-        hasWon={hasWon}
+        showGameWonModal={showGameWonModal}
+        setShowGameWonModal={setShowGameWonModal}
         moves={moves}
         newGame={newGame}
         playerName={screenProps.playerName}
       />
       <PlayMuteButton {...screenProps} />
+      <TouchableOpacity
+        style={styles.instructionsButton}
+        onPress={() => setShowInstructionsModal(true)}
+      >
+        <MaterialCommunityIcons
+          name="information-outline"
+          size={32}
+          color="silver"
+        />
+      </TouchableOpacity>
       <Text style={styles.textStyle}>Moves: {moves}</Text>
       <View
         style={{
@@ -125,12 +143,22 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     marginBottom: 10
   },
-  rowStyle: { flexDirection: "row", flex: 1 },
+  rowStyle: {
+    flexDirection: "row",
+    flex: 1
+  },
   textStyle: {
     fontFamily: "orbitron-medium",
     fontSize: 20,
     padding: 10,
     color: "white"
+  },
+  instructionsButton: {
+    position: "absolute",
+    left: 15,
+    top: 45,
+    zIndex: 10,
+    elevation: 5
   }
 });
 

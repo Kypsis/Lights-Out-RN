@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import { ActivityIndicator } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
@@ -54,7 +54,7 @@ export default () => {
     })();
   }, []);
 
-  return fontLoaded === true ? (
+  return fontLoaded ? (
     <App
       screenProps={{
         playMusicState,
