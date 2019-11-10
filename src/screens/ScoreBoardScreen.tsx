@@ -31,7 +31,7 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
       <ConfirmModal show={showConfirmModal} setShow={setShowConfirmModal} />
       <PlayMuteButton {...screenProps} />
       <View style={{ ...styles.listContainer, height: screenHeight - 240 }}>
-        {fontLoaded ? <Text style={styles.textStyle}>High Score</Text> : null}
+        <Text style={styles.textStyle}>High Score</Text>
         <FlatList
           data={scoreboard}
           renderItem={({ item }: any) => (

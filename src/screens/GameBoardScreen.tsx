@@ -72,9 +72,7 @@ const StartGame: React.FC<Props> = ({
         playerName={screenProps.playerName}
       />
       <PlayMuteButton {...screenProps} />
-      {screenProps.fontLoaded ? (
-        <Text style={styles.textStyle}>Moves: {moves}</Text>
-      ) : null}
+      <Text style={styles.textStyle}>Moves: {moves}</Text>
       <View
         style={{
           ...styles.boardContainer,

@@ -34,8 +34,8 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
       <ExitModal navigation={navigation} />
       <PlayMuteButton {...screenProps} />
       <View style={styles.titleContainer}>
-        {fontLoaded ? <Text style={styles.textLeft}>Lights</Text> : null}
-        {fontLoaded ? <Text style={styles.textRight}>Out</Text> : null}
+        <Text style={styles.textLeft}>Lights</Text>
+        <Text style={styles.textRight}>Out</Text>
       </View>
       <Card
         containerStyle={styles.cardContainer}

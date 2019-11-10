@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
+import { ActivityIndicator } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { ScreenOrientation } from "expo";
@@ -46,14 +47,14 @@ export default () => {
   }, []);
 
   useEffect(() => {
-    async function changeScreenOrientation() {
+    (async function changeScreenOrientation() {
       await ScreenOrientation.lockAsync(
         ScreenOrientation.OrientationLock.PORTRAIT
       );
-    }
+    })();
   }, []);
 
-  return (
+  return fontLoaded === true ? (
     <App
       screenProps={{
         playMusicState,
@@ -61,9 +62,14 @@ export default () => {
         playerName,
         setPlayerName,
         scoreboard,
-        setScoreboard,
-        fontLoaded
+        setScoreboard
       }}
+    />
+  ) : (
+    <ActivityIndicator
+      style={{ flex: 1, justifyContent: "center" }}
+      size="large"
+      color="#00ff00"
     />
   );
 };
