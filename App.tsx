@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, Platform } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { ScreenOrientation } from "expo";
@@ -47,11 +47,13 @@ export default () => {
   }, []);
 
   useEffect(() => {
-    (async function changeScreenOrientation() {
-      await ScreenOrientation.lockAsync(
-        ScreenOrientation.OrientationLock.PORTRAIT
-      );
-    })();
+    (Platform.OS === "android"
+      ? async function changeScreenOrientation() {
+          await ScreenOrientation.lockAsync(
+            ScreenOrientation.OrientationLock.PORTRAIT
+          );
+        }
+      : null)();
   }, []);
 
   return fontLoaded ? (
