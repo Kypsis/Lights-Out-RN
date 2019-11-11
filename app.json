@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Lights On",
-    "description": "Classical Lights Out game",
+    "description": "Classical Lights Out/On game",
     "slug": "LightsOn",
     "privacy": "public",
     "sdkVersion": "35.0.0",
