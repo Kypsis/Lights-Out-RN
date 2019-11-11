@@ -48,13 +48,12 @@ export default () => {
   }, []);
 
   useEffect(() => {
-    (Platform.OS === "android"
-      ? async function changeScreenOrientation() {
-          await ScreenOrientation.lockAsync(
-            ScreenOrientation.OrientationLock.PORTRAIT
-          );
-        }
-      : null)();
+    if (Platform.OS === "android")
+      (async () => {
+        await ScreenOrientation.lockAsync(
+          ScreenOrientation.OrientationLock.PORTRAIT
+        );
+      })();
   }, []);
 
   return fontLoaded ? (
