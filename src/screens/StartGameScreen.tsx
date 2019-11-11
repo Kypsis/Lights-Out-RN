@@ -14,7 +14,7 @@ interface Props {
 }
 
 const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
-  const { playerName, setPlayerName, fontLoaded } = screenProps;
+  const { playerName, setPlayerName } = screenProps;
 
   useEffect(() => {
     const focusListener = navigation.addListener("didFocus", () => {

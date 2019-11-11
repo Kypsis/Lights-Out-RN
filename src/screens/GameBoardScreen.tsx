@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback
+} from "react-native";
 import { NavigationStackProp } from "react-navigation-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -16,29 +22,33 @@ import { screenWidth } from "../utilities/screenDimensions";
 interface Props {
   navigation: NavigationStackProp;
   screenProps: any;
-  rows: number;
-  columns: number;
   chanceLightStartsOn: number;
 }
 
 const StartGame: React.FC<Props> = ({
   navigation,
   screenProps,
-  rows = 5,
-  columns = 5,
   chanceLightStartsOn = 0.2
 }) => {
+  const [boardSize, setBoardSize] = useState({ rows: 5, columns: 5 });
   const [board, setBoard] = useState([]);
   const [moves, setMoves] = useState(0);
   const [showGameWonModal, setShowGameWonModal] = useState(false);
   const [showInstructionsModal, setShowInstructionsModal] = useState(false);
 
+  let { rows, columns } = boardSize;
+
   useEffect(() => {
     createBoard();
-  }, []);
+  }, [boardSize]);
+
+  const cheat = (): void => {
+    boardSize.rows === 5 && boardSize.columns === 5
+      ? setBoardSize({ rows: 3, columns: 3 })
+      : setBoardSize({ rows: 5, columns: 5 });
+  };
 
   const newGame = (): void => {
-    setBoard([]);
     setMoves(0);
     setShowGameWonModal(false);
     createBoard();
@@ -90,7 +100,9 @@ const StartGame: React.FC<Props> = ({
           color="silver"
         />
       </TouchableOpacity>
-      <Text style={styles.textStyle}>Moves: {moves}</Text>
+      <TouchableWithoutFeedback onLongPress={cheat}>
+        <Text style={styles.textStyle}>Moves: {moves}</Text>
+      </TouchableWithoutFeedback>
       <View
         style={{
           ...styles.boardContainer,

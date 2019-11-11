@@ -8,7 +8,7 @@ import { clearScores } from "../utilities/asyncStorage";
 
 interface Props {
   show: boolean;
-  setShow(arg);
+  setShow(arg: boolean): void;
 }
 
 const ConfirmModal: React.FC<Props> = ({ show, setShow }) => {
