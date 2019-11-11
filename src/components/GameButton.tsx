@@ -18,11 +18,11 @@ const GameButton: React.FC<Props> = ({
   callback
 }) => (
   <Button
+    title={title}
+    raised
     buttonStyle={{ borderRadius: 50, backgroundColor: "#E82256" }}
     containerStyle={{ margin: 8, width }}
     titleStyle={{ padding: 10 }}
-    title={title}
-    raised
     icon={
       <MaterialCommunityIcons name={iconName} size={20} color={iconColor} />
     }

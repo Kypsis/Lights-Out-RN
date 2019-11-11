@@ -24,8 +24,8 @@ const ConfirmModal: React.FC<Props> = ({ show, setShow }) => {
         <View style={{ flexDirection: "row" }}>
           <GameButton
             title="Yes"
-            iconName="check"
             iconColor="#327738"
+            iconName="check"
             width={90}
             callback={() => {
               clearScores();
@@ -34,8 +34,8 @@ const ConfirmModal: React.FC<Props> = ({ show, setShow }) => {
           />
           <GameButton
             title="No"
-            iconName="close"
             iconColor="#8214A0"
+            iconName="close"
             width={90}
             callback={() => setShow(false)}
           />
@@ -47,15 +47,15 @@ const ConfirmModal: React.FC<Props> = ({ show, setShow }) => {
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: "center",
     flex: 1,
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: "center"
   },
   text: {
+    color: "white",
     fontSize: 25,
-    padding: 10,
-    color: "white"
+    padding: 10
   }
 });
 

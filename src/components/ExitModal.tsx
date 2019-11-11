@@ -34,8 +34,8 @@ const ExitModal: React.FC<Props> = ({ navigation }) => {
 
   return (
     <Overlay
-      isVisible={show}
       height={150}
+      isVisible={show}
       overlayStyle={{ backgroundColor: "#1D1F33" }}
       windowBackgroundColor={"rgba(0, 0, 0, .9)"}
     >
@@ -44,15 +44,15 @@ const ExitModal: React.FC<Props> = ({ navigation }) => {
         <View style={{ flexDirection: "row" }}>
           <GameButton
             title="Yes"
-            iconName="check"
             iconColor="#327738"
+            iconName="check"
             width={90}
             callback={handleExit}
           />
           <GameButton
             title="No"
-            iconName="close"
             iconColor="#8214A0"
+            iconName="close"
             width={90}
             callback={() => setShow(false)}
           />
@@ -64,15 +64,15 @@ const ExitModal: React.FC<Props> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: "center",
     flex: 1,
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: "center"
   },
   text: {
+    color: "white",
     fontSize: 25,
-    padding: 10,
-    color: "white"
+    padding: 10
   }
 });
 

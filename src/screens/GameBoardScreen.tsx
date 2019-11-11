@@ -78,16 +78,16 @@ const StartGame: React.FC<Props> = ({
     <View style={styles.screenContainer}>
       <ExitModal navigation={navigation} />
       <InstructionsModal
-        showInstructions={showInstructionsModal}
         setShowInstructions={setShowInstructionsModal}
+        showInstructions={showInstructionsModal}
       />
       <GameWonModal
-        navigation={navigation}
-        showGameWonModal={showGameWonModal}
-        setShowGameWonModal={setShowGameWonModal}
         moves={moves}
+        navigation={navigation}
         newGame={newGame}
         playerName={screenProps.playerName}
+        setShowGameWonModal={setShowGameWonModal}
+        showGameWonModal={showGameWonModal}
       />
       <PlayMuteButton {...screenProps} />
       <TouchableOpacity
@@ -95,9 +95,9 @@ const StartGame: React.FC<Props> = ({
         onPress={() => setShowInstructionsModal(true)}
       >
         <MaterialCommunityIcons
+          color="#8F8F9C"
           name="information-outline"
           size={32}
-          color="#8F8F9C"
         />
       </TouchableOpacity>
       <TouchableWithoutFeedback onLongPress={cheat}>
@@ -115,8 +115,8 @@ const StartGame: React.FC<Props> = ({
             {cell.map((innerCell, innerIndex) => (
               <Cell
                 coords={`${index}-${innerIndex}`}
-                key={`${index}-${innerIndex}`}
                 isLit={board[index][innerIndex]}
+                key={`${index}-${innerIndex}`}
                 handlePress={handlePress}
               />
             ))}
@@ -125,14 +125,14 @@ const StartGame: React.FC<Props> = ({
       </View>
       <GameButton
         title="Go to High Scores"
-        iconName="certificate"
         iconColor="gold"
+        iconName="certificate"
         callback={() => navigation.navigate("Score")}
       />
       <GameButton
         title="Restart Game"
-        iconName="replay"
         iconColor="#327738"
+        iconName="replay"
         callback={newGame}
       />
     </View>
@@ -141,36 +141,35 @@ const StartGame: React.FC<Props> = ({
 
 const styles = StyleSheet.create({
   screenContainer: {
+    alignItems: "center",
+    backgroundColor: "#090C22",
     flex: 1,
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#090C22"
+    justifyContent: "center"
   },
   boardContainer: {
+    backgroundColor: "#1D1F33",
+    borderColor: "#327738",
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: "#327738",
-    backgroundColor: "#1D1F33",
     flexWrap: "wrap",
     marginBottom: 10
   },
   rowStyle: {
-    flexDirection: "row",
-    flex: 1
+    flex: 1,
+    flexDirection: "row"
   },
   textStyle: {
+    color: "white",
     fontFamily: "orbitron-medium",
     fontSize: 20,
-    padding: 10,
-    color: "white"
+    padding: 10
   },
   instructionsButton: {
     position: "absolute",
     left: 15,
     top: 42,
-    zIndex: 10,
-    elevation: 5
+    zIndex: 10
   }
 });
 

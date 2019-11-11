@@ -18,7 +18,8 @@ const navigator = createStackNavigator(
   },
   {
     initialRouteName: "Start",
-    headerMode: "none"
+    headerMode: "none",
+    transparentCard: true
   }
 );
 
@@ -26,9 +27,9 @@ const App = createAppContainer(navigator);
 
 export default () => {
   const [playMusicState, setPlayMusicState] = useState(false);
+  const [fontLoaded, setFontLoaded] = useState(false);
   const [playerName, setPlayerName] = useState("Anonymous");
   const [scoreboard, setScoreboard] = useState([]);
-  const [fontLoaded, setFontLoaded] = useState(false);
 
   useEffect(() => {
     playMusic(true);

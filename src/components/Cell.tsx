@@ -24,10 +24,10 @@ const Cell: React.FC<Props> = ({ isLit, coords, handlePress }) => {
 
 const styles = StyleSheet.create({
   cell: {
-    flex: 1,
-    borderWidth: 2,
     borderColor: "black",
     borderRadius: 10,
+    borderWidth: 2,
+    flex: 1,
     margin: 2
   }
 });

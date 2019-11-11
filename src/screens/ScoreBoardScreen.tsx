@@ -34,13 +34,16 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
         <Text style={styles.textStyle}>High Score</Text>
         <FlatList
           data={scoreboard}
+          keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }: any) => (
             <ListItem
+              title={item.name}
+              bottomDivider
+              topDivider
               containerStyle={{
                 backgroundColor: "#1D1F33"
               }}
               titleStyle={{ color: "white" }}
-              title={item.name}
               badge={{
                 value: item.score,
                 badgeStyle: {
@@ -51,23 +54,20 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
                 },
                 textStyle: { color: "#ffe54c", fontSize: 17 }
               }}
-              topDivider
-              bottomDivider
             />
           )}
-          keyExtractor={(item, index) => index.toString()}
         />
       </View>
       <GameButton
         title="Clear Scores"
-        iconName="trash-can-outline"
         iconColor="gainsboro"
+        iconName="trash-can-outline"
         callback={() => setShowConfirmModal(true)}
       />
       <GameButton
         title="Back to Play"
-        iconName="backburger"
         iconColor="#327738"
+        iconName="backburger"
         callback={() => navigation.navigate("Game")}
       />
     </View>
@@ -76,28 +76,28 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
 
 const styles = StyleSheet.create({
   screenContainer: {
+    alignItems: "center",
+    backgroundColor: "#090C22",
     flex: 1,
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#090C22"
+    justifyContent: "center"
   },
   listContainer: {
     alignSelf: "stretch",
-    borderRadius: 10,
     backgroundColor: "#1D1F33",
+    borderRadius: 10,
+    marginBottom: 10,
     marginHorizontal: 20,
     paddingVertical: 20,
-    marginTop: 50,
-    marginBottom: 10
+    marginTop: 50
   },
   textStyle: {
-    fontFamily: "orbitron-medium",
     alignSelf: "center",
+    color: "white",
+    fontFamily: "orbitron-medium",
     fontSize: 40,
     fontWeight: "400",
-    paddingBottom: 10,
-    color: "white"
+    paddingBottom: 10
   }
 });
 

@@ -8,12 +8,12 @@ import GameButton from "../components/GameButton";
 import { setHighScores } from "../utilities/asyncStorage";
 
 interface Props {
-  navigation: NavigationStackProp;
   moves: number;
+  navigation: NavigationStackProp;
   playerName: string;
   showGameWonModal: boolean;
-  setShowGameWonModal(arg: boolean);
   newGame(): void;
+  setShowGameWonModal(arg: boolean);
 }
 
 const GameWonModal: React.FC<Props> = ({
@@ -39,8 +39,8 @@ const GameWonModal: React.FC<Props> = ({
 
   return (
     <Overlay
-      isVisible={showGameWonModal}
       height={300}
+      isVisible={showGameWonModal}
       overlayStyle={{ backgroundColor: "#1D1F33" }}
       windowBackgroundColor={"rgba(0, 0, 0, .9)"}
     >
@@ -51,14 +51,14 @@ const GameWonModal: React.FC<Props> = ({
         <View>
           <GameButton
             title="Show High Score"
-            iconName="certificate"
             iconColor="gold"
+            iconName="certificate"
             callback={showHighScore}
           />
           <GameButton
             title="Replay"
-            iconName="replay"
             iconColor="#327738"
+            iconName="replay"
             callback={replay}
           />
         </View>
@@ -69,21 +69,21 @@ const GameWonModal: React.FC<Props> = ({
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: "center",
     flex: 1,
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: "center"
   },
   heading: {
+    color: "white",
     fontFamily: "orbitron-medium",
     fontSize: 30,
-    padding: 10,
-    color: "white"
+    padding: 10
   },
   text: {
+    color: "white",
     fontSize: 18,
-    padding: 10,
-    color: "white"
+    padding: 10
   }
 });
 

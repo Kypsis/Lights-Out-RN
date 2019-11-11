@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, KeyboardAvoidingView } from "react-native";
+import { View, StyleSheet, Image, KeyboardAvoidingView } from "react-native";
 import { Input, Card } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -26,101 +26,83 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
   }, []);
 
   return (
-    <KeyboardAvoidingView
-      style={styles.screenContainer}
-      behavior="padding"
-      enabled
-    >
+    <View style={styles.screenContainer}>
       <ExitModal navigation={navigation} />
       <PlayMuteButton {...screenProps} />
-      <View style={styles.titleContainer}>
-        <Text style={styles.textLeft}>Lights</Text>
-        <Text style={styles.textRight}>On</Text>
-      </View>
-      <Card
-        containerStyle={styles.cardContainer}
-        title="Please Enter Your Name"
-        titleStyle={{ fontSize: 20, color: "white" }}
+      <Image
+        source={require("../../assets/logo.png")}
+        style={styles.imageStyle}
+      />
+      <KeyboardAvoidingView
+        behavior="position"
+        enabled
+        style={styles.keyboardAvoidingViewStyle}
       >
-        <Input
-          inputStyle={{ color: "white" }}
-          selectTextOnFocus
-          leftIconContainerStyle={{ marginRight: 10 }}
-          value={playerName}
-          onChangeText={playerName => setPlayerName(playerName)}
-          leftIcon={
-            <MaterialCommunityIcons name="pencil" size={24} color="#8F8F9C" />
-          }
-        />
-        <View style={styles.buttonContainer}>
-          <GameButton
-            title="Play"
-            iconName="lightbulb-on"
-            iconColor="gold"
-            callback={() => navigation.navigate("Game")}
+        <Card
+          title="Please Enter Your Name"
+          containerStyle={styles.cardContainer}
+          titleStyle={styles.titleStyle}
+        >
+          <Input
+            selectTextOnFocus
+            value={playerName}
+            inputStyle={{ color: "white" }}
+            leftIconContainerStyle={styles.leftIconContainerStyle}
+            leftIcon={
+              <MaterialCommunityIcons name="pencil" size={24} color="#8F8F9C" />
+            }
+            onChangeText={playerName => setPlayerName(playerName)}
           />
-        </View>
-      </Card>
-    </KeyboardAvoidingView>
+          <View style={styles.buttonContainer}>
+            <GameButton
+              title="Play"
+              iconColor="gold"
+              iconName="lightbulb-on"
+              callback={() => navigation.navigate("Game")}
+            />
+          </View>
+        </Card>
+      </KeyboardAvoidingView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   screenContainer: {
+    alignItems: "center",
+    backgroundColor: "#090C22",
     flex: 1,
     flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#090C22"
+    justifyContent: "center"
   },
   cardContainer: {
-    borderWidth: 0,
     alignSelf: "stretch",
-    borderRadius: 5,
     backgroundColor: "#1D1F33",
+    borderRadius: 5,
+    borderWidth: 0,
     marginHorizontal: 20
   },
   buttonContainer: {
     alignSelf: "center",
     marginHorizontal: 10,
-    marginTop: 25,
     marginBottom: 8,
+    marginTop: 25,
     width: 200
   },
-  titleContainer: {
-    justifyContent: "center",
-    alignItems: "center",
+  imageStyle: {
+    height: 182,
+    width: 250
+  },
+  keyboardAvoidingViewStyle: {
     alignSelf: "stretch",
-    flexDirection: "row",
-    backgroundColor: "#1D1F33",
-    marginHorizontal: 20,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "#327738",
-    elevation: 8,
-    height: 90
+    marginTop: 20
   },
-  textLeft: {
-    fontFamily: "orbitron-medium",
-    fontSize: 40,
-    color: "#8F8F9C",
-    paddingLeft: 15,
-    paddingRight: 5,
-    paddingBottom: 5,
-    textShadowColor: "black",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 2
+  titleStyle: {
+    color: "white",
+    fontSize: 20
   },
-  textRight: {
-    fontFamily: "orbitron-medium",
-    fontSize: 50,
-    color: "#fffd61",
-    paddingLeft: 5,
-    paddingRight: 15,
-    paddingTop: 10,
-    textShadowColor: "#1a1909",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 2
+  leftIconContainerStyle: {
+    marginRight: 10
   }
 });
 

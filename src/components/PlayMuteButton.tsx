@@ -36,8 +36,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 10,
     top: 30,
-    zIndex: 10,
-    elevation: 5
+    zIndex: 10
   },
   button: {
     margin: 10
