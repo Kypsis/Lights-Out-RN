@@ -5,11 +5,7 @@
     "slug": "LightsOn",
     "privacy": "public",
     "sdkVersion": "35.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,12 +17,17 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "primaryColor": "#090C22",
+    "assetBundlePatterns": ["**/*"],
+    "githubUrl": "https://github.com/Kypsis/Lights-Out-RN",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lightson.hs"
     },
-    "githubUrl": "https://github.com/Kypsis/Lights-Out-RN"
+    "android": {
+      "package": "com.lightson.hs",
+      "versionCode": 1,
+      "permissions": []
+    }
   }
 }
