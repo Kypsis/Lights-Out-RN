@@ -40,16 +40,16 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
       <Card
         containerStyle={styles.cardContainer}
         title="Please Enter Your Name"
-        titleStyle={{ fontSize: 20, color: "black" }}
+        titleStyle={{ fontSize: 20, color: "white" }}
       >
         <Input
-          inputStyle={{ color: "#4f5b62" }}
+          inputStyle={{ color: "white" }}
           selectTextOnFocus
           leftIconContainerStyle={{ marginRight: 10 }}
           value={playerName}
           onChangeText={playerName => setPlayerName(playerName)}
           leftIcon={
-            <MaterialCommunityIcons name="pencil" size={24} color="black" />
+            <MaterialCommunityIcons name="pencil" size={24} color="#8F8F9C" />
           }
         />
         <View style={styles.buttonContainer}>
@@ -71,27 +71,14 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgb(25, 25, 25)"
+    backgroundColor: "#090C22"
   },
   cardContainer: {
     borderWidth: 0,
     alignSelf: "stretch",
     borderRadius: 5,
-    backgroundColor: "#F5F5F6",
+    backgroundColor: "#1D1F33",
     marginHorizontal: 20
-  },
-  titleContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    alignSelf: "stretch",
-    flexDirection: "row",
-    backgroundColor: "#0277bd",
-    marginHorizontal: 20,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: "rgb(245, 245, 245)",
-    elevation: 8,
-    height: 80
   },
   buttonContainer: {
     alignSelf: "center",
@@ -100,25 +87,38 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     width: 200
   },
+  titleContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "stretch",
+    flexDirection: "row",
+    backgroundColor: "#1D1F33",
+    marginHorizontal: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "#327738",
+    elevation: 8,
+    height: 90
+  },
   textLeft: {
     fontFamily: "orbitron-medium",
     fontSize: 40,
-    color: "#37474f",
+    color: "#8F8F9C",
     paddingLeft: 15,
     paddingRight: 5,
     paddingBottom: 5,
-    textShadowColor: "#102027",
+    textShadowColor: "black",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2
   },
   textRight: {
     fontFamily: "orbitron-medium",
     fontSize: 50,
-    color: "#ffb300",
+    color: "#fffd61",
     paddingLeft: 5,
     paddingRight: 15,
     paddingTop: 10,
-    textShadowColor: "#c68400",
+    textShadowColor: "#1a1909",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 2
   }

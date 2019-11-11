@@ -36,7 +36,8 @@ const ExitModal: React.FC<Props> = ({ navigation }) => {
     <Overlay
       isVisible={show}
       height={150}
-      overlayStyle={{ backgroundColor: "#E1E2E1" }}
+      overlayStyle={{ backgroundColor: "#1D1F33" }}
+      windowBackgroundColor={"rgba(0, 0, 0, .9)"}
     >
       <View style={styles.container}>
         <Text style={styles.text}>Exit game?</Text>
@@ -44,14 +45,14 @@ const ExitModal: React.FC<Props> = ({ navigation }) => {
           <GameButton
             title="Yes"
             iconName="check"
-            iconColor="darkgreen"
+            iconColor="#327738"
             width={90}
             callback={handleExit}
           />
           <GameButton
             title="No"
             iconName="close"
-            iconColor="red"
+            iconColor="#8214A0"
             width={90}
             callback={() => setShow(false)}
           />
@@ -70,7 +71,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 25,
-    padding: 10
+    padding: 10,
+    color: "white"
   }
 });
 

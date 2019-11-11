@@ -18,7 +18,7 @@ const GameButton: React.FC<Props> = ({
   callback
 }) => (
   <Button
-    buttonStyle={{ borderRadius: 50, backgroundColor: "rgb(0,178,70)" }}
+    buttonStyle={{ borderRadius: 50, backgroundColor: "#E82256" }}
     containerStyle={{ margin: 8, width }}
     titleStyle={{ padding: 10 }}
     title={title}

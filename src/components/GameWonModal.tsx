@@ -41,7 +41,8 @@ const GameWonModal: React.FC<Props> = ({
     <Overlay
       isVisible={showGameWonModal}
       height={300}
-      overlayStyle={{ backgroundColor: "#E1E2E1" }}
+      overlayStyle={{ backgroundColor: "#1D1F33" }}
+      windowBackgroundColor={"rgba(0, 0, 0, .9)"}
     >
       <View style={styles.container}>
         <Text style={styles.heading}>You Win!</Text>
@@ -56,8 +57,8 @@ const GameWonModal: React.FC<Props> = ({
           />
           <GameButton
             title="Replay"
-            iconName="restart"
-            iconColor="darkgreen"
+            iconName="replay"
+            iconColor="#327738"
             callback={replay}
           />
         </View>
@@ -74,12 +75,15 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   heading: {
-    fontSize: 36,
-    padding: 10
+    fontFamily: "orbitron-medium",
+    fontSize: 30,
+    padding: 10,
+    color: "white"
   },
   text: {
-    fontSize: 20,
-    padding: 10
+    fontSize: 18,
+    padding: 10,
+    color: "white"
   }
 });
 

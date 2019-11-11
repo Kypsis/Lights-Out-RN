@@ -97,7 +97,7 @@ const StartGame: React.FC<Props> = ({
         <MaterialCommunityIcons
           name="information-outline"
           size={32}
-          color="silver"
+          color="#8F8F9C"
         />
       </TouchableOpacity>
       <TouchableWithoutFeedback onLongPress={cheat}>
@@ -131,8 +131,8 @@ const StartGame: React.FC<Props> = ({
       />
       <GameButton
         title="Restart Game"
-        iconName="restart"
-        iconColor="deepskyblue"
+        iconName="replay"
+        iconColor="#327738"
         callback={newGame}
       />
     </View>
@@ -145,13 +145,13 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgb(25, 25, 25)"
+    backgroundColor: "#090C22"
   },
   boardContainer: {
     borderRadius: 10,
-    borderWidth: 5,
-    borderColor: "#263238",
-    backgroundColor: "#455a64",
+    borderWidth: 2,
+    borderColor: "#327738",
+    backgroundColor: "#1D1F33",
     flexWrap: "wrap",
     marginBottom: 10
   },
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   instructionsButton: {
     position: "absolute",
     left: 15,
-    top: 45,
+    top: 42,
     zIndex: 10,
     elevation: 5
   }

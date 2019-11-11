@@ -17,7 +17,8 @@ const InstructionsModal: React.FC<Props> = ({
     <Overlay
       isVisible={showInstructions}
       height={320}
-      overlayStyle={{ backgroundColor: "#E1E2E1" }}
+      overlayStyle={{ backgroundColor: "#1D1F33" }}
+      windowBackgroundColor={"rgba(0, 0, 0, .9)"}
     >
       <View style={styles.container}>
         <Text style={styles.heading}>How to play?</Text>
@@ -29,7 +30,7 @@ const InstructionsModal: React.FC<Props> = ({
         <GameButton
           title="Got it!"
           iconName="thumb-up-outline"
-          iconColor="darkslategray"
+          iconColor="#327738"
           callback={() => setShowInstructions(false)}
         />
       </View>
@@ -47,11 +48,13 @@ const styles = StyleSheet.create({
   heading: {
     fontFamily: "orbitron-medium",
     fontSize: 25,
-    padding: 10
+    padding: 10,
+    color: "white"
   },
   text: {
     fontSize: 18,
-    padding: 10
+    padding: 10,
+    color: "white"
   }
 });
 

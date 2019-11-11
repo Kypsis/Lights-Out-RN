@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ActivityIndicator, Platform } from "react-native";
+import { View, ActivityIndicator, Platform } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { ScreenOrientation } from "expo";
@@ -68,10 +68,10 @@ export default () => {
       }}
     />
   ) : (
-    <ActivityIndicator
-      style={{ flex: 1, justifyContent: "center" }}
-      size="large"
-      color="#00ff00"
-    />
+    <View
+      style={{ backgroundColor: "#090C22", flex: 1, justifyContent: "center" }}
+    >
+      <ActivityIndicator size="large" color="#00ff00" />
+    </View>
   );
 };

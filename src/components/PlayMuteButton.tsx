@@ -22,9 +22,9 @@ const PlayMuteButton: React.FC<Props> = ({
         }}
       >
         {!!playMusicState ? (
-          <Octicons name="mute" size={32} color="silver" />
+          <Octicons name="mute" size={32} color="#8F8F9C" />
         ) : (
-          <Octicons name="unmute" size={32} color="silver" />
+          <Octicons name="unmute" size={32} color="#8F8F9C" />
         )}
       </TouchableOpacity>
     </View>

@@ -37,15 +37,17 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
           renderItem={({ item }: any) => (
             <ListItem
               containerStyle={{
-                backgroundColor: "#F5F5F6"
+                backgroundColor: "#1D1F33"
               }}
+              titleStyle={{ color: "white" }}
               title={item.name}
               badge={{
                 value: item.score,
                 badgeStyle: {
                   backgroundColor: "#4f5b62",
                   height: 30,
-                  width: 30
+                  width: 30,
+                  borderColor: "#090C22"
                 },
                 textStyle: { color: "#ffe54c", fontSize: 17 }
               }}
@@ -63,9 +65,9 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
         callback={() => setShowConfirmModal(true)}
       />
       <GameButton
-        title="Replay"
-        iconName="restart"
-        iconColor="deepskyblue"
+        title="Back to Play"
+        iconName="backburger"
+        iconColor="#327738"
         callback={() => navigation.navigate("Game")}
       />
     </View>
@@ -78,12 +80,12 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgb(25, 25, 25)"
+    backgroundColor: "#090C22"
   },
   listContainer: {
     alignSelf: "stretch",
     borderRadius: 10,
-    backgroundColor: "#F5F5F6",
+    backgroundColor: "#1D1F33",
     marginHorizontal: 20,
     paddingVertical: 20,
     marginTop: 50,
@@ -94,7 +96,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontSize: 40,
     fontWeight: "400",
-    paddingBottom: 10
+    paddingBottom: 10,
+    color: "white"
   }
 });
 

@@ -13,7 +13,7 @@ const Cell: React.FC<Props> = ({ isLit, coords, handlePress }) => {
     <TouchableOpacity
       style={{
         ...styles.cell,
-        backgroundColor: isLit ? "#fffd61" : "#aeaeae"
+        backgroundColor: isLit ? "#fffd61" : "#8F8F9C"
       }}
       onPress={() => {
         handlePress(coords);
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   cell: {
     flex: 1,
     borderWidth: 2,
-    borderColor: "gray",
+    borderColor: "black",
     borderRadius: 10,
     margin: 2
   }
