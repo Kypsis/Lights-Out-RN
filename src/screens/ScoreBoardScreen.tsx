@@ -49,7 +49,7 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
                 badgeStyle: {
                   backgroundColor: "#4f5b62",
                   height: 30,
-                  width: 30,
+                  width: 40,
                   borderColor: "#090C22"
                 },
                 textStyle: { color: "#ffe54c", fontSize: 17 }

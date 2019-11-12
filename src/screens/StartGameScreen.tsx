@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { View, StyleSheet, Image, KeyboardAvoidingView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback
+} from "react-native";
 import { Input, Card } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -16,6 +22,8 @@ interface Props {
 const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
   const { playerName, setPlayerName } = screenProps;
 
+  const input: any = React.createRef();
+
   useEffect(() => {
     const focusListener = navigation.addListener("didFocus", () => {
       setPlayerName("Anonymous");
@@ -26,44 +34,51 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
   }, []);
 
   return (
-    <View style={styles.screenContainer}>
-      <ExitModal navigation={navigation} />
-      <PlayMuteButton {...screenProps} />
-      <Image
-        source={require("../../assets/logo.png")}
-        style={styles.imageStyle}
-      />
-      <KeyboardAvoidingView
-        behavior="position"
-        enabled
-        style={styles.keyboardAvoidingViewStyle}
-      >
-        <Card
-          title="Please Enter Your Name"
-          containerStyle={styles.cardContainer}
-          titleStyle={styles.titleStyle}
+    <TouchableWithoutFeedback onPress={() => input.current.blur()}>
+      <View style={styles.screenContainer}>
+        <ExitModal navigation={navigation} />
+        <PlayMuteButton {...screenProps} />
+        <Image
+          source={require("../../assets/logo.png")}
+          style={styles.imageStyle}
+        />
+        <KeyboardAvoidingView
+          behavior="position"
+          enabled
+          style={styles.keyboardAvoidingViewStyle}
         >
-          <Input
-            selectTextOnFocus
-            value={playerName}
-            inputStyle={{ color: "white" }}
-            leftIconContainerStyle={styles.leftIconContainerStyle}
-            leftIcon={
-              <MaterialCommunityIcons name="pencil" size={24} color="#8F8F9C" />
-            }
-            onChangeText={playerName => setPlayerName(playerName)}
-          />
-          <View style={styles.buttonContainer}>
-            <GameButton
-              title="Play"
-              iconColor="gold"
-              iconName="lightbulb-on"
-              callback={() => navigation.navigate("Game")}
+          <Card
+            title="Please Enter Your Name"
+            containerStyle={styles.cardContainer}
+            titleStyle={styles.titleStyle}
+          >
+            <Input
+              ref={input}
+              selectTextOnFocus
+              value={playerName}
+              inputStyle={{ color: "white" }}
+              leftIconContainerStyle={styles.leftIconContainerStyle}
+              leftIcon={
+                <MaterialCommunityIcons
+                  name="pencil"
+                  size={24}
+                  color="#8F8F9C"
+                />
+              }
+              onChangeText={playerName => setPlayerName(playerName)}
             />
-          </View>
-        </Card>
-      </KeyboardAvoidingView>
-    </View>
+            <View style={styles.buttonContainer}>
+              <GameButton
+                title="Play"
+                iconColor="gold"
+                iconName="lightbulb-on"
+                callback={() => navigation.navigate("Game")}
+              />
+            </View>
+          </Card>
+        </KeyboardAvoidingView>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
