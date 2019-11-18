@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, FlatList, Dimensions } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import { ListItem } from "react-native-elements";
 import { NavigationStackProp } from "react-navigation-stack";
 
@@ -19,7 +19,7 @@ interface Props {
 const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  const { scoreboard, setScoreboard, fontLoaded } = screenProps;
+  const { scoreboard, setScoreboard } = screenProps;
 
   useEffect(() => {
     getHighScores(setScoreboard);

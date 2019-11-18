@@ -25,6 +25,7 @@ const StartGame: React.FC<Props> = ({ navigation, screenProps }) => {
   const input: any = React.createRef();
 
   useEffect(() => {
+    // reset name to Anonymous when navigated back to StartGameScreen
     const focusListener = navigation.addListener("didFocus", () => {
       setPlayerName("Anonymous");
     });
